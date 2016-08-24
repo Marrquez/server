@@ -3,7 +3,7 @@
  */
 var connect         = require('connect');
 var http            = require('http');
-var directory       = './app/dist/';
+var directory       = 'http://gualdo.s3-website-us-west-2.amazonaws.com/web/app/dist/';
 var serveStatic     = require('serve-static');
 var express         = require("express");
 var app             = express();

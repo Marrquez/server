@@ -27,7 +27,6 @@ app.get('/calibrate', CalibrationController.calibrate);
 app.use(router);
 app = connect();
 
-app.use(serveStatic(directory));
-app.listen(port);
-
-console.log('Listening on port: ' + port);
+app.use(serveStatic(directory)).listen(port, function(){
+    console.log('Listening on port: ' + port);
+});

@@ -3,12 +3,10 @@
  */
 var connect         = require('connect');
 var http            = require('http');
-var directory       = 'http://gualdo.s3-website-us-west-2.amazonaws.com/web/app/dist/';
-var serveStatic             = require('serve-static');
 var express                 = require("express");
 var app                     = express();
 var morgan                  = require("morgan");
-var port                    = process.env.PORT || 8080;
+var port                    = process.env.PORT || 8082;
 var bodyParser              = require("body-parser");
 var methodOverride          = require("method-override");
 var router                  = express.Router();
@@ -23,10 +21,13 @@ app.use(methodOverride());
 app.use(morgan("dev"));
 
 app.get('/calibrate', CalibrationController.calibrate);
+app.get('/', function(){
+    return "Hello world";
+});
 
 app.use(router);
 app = connect();
 
-app.use(serveStatic(directory)).listen(port, function(){
+app.listen(port, function(){
     console.log('Listening on port: ' + port);
 });

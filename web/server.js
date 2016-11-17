@@ -21,7 +21,7 @@ app.use(methodOverride());
 app.use(morgan("dev"));
 
 app.get('/calibrate', CalibrationController.calibrate);
-app.get('/', function(){
+app.get('/', function(req, res){
     var result = "Hi everyone!";
     res.status(200);
     res.jsonp(result);

@@ -34,7 +34,6 @@ app.get('/', function(req, res){
 });
 
 app.use(router);
-app = connect();
 app.listen(port, function(){
     console.log('Listening on port: ' + port);
 });

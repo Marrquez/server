@@ -28,6 +28,10 @@ app.get('/', function(){
 app.use(router);
 app = connect();
 
-app.listen(port, function(){
+http.createServer(function (req, res) {
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.write('hello, i know nodejitsu.');
+    res.end();
+}).listen(port, function(){
     console.log('Listening on port: ' + port);
 });

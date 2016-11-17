@@ -2,6 +2,8 @@
  * Created by warrdnez on 28/07/16.
  */
 var connect         = require('connect');
+var serveStatic     = require('serve-static');
+var directory       = 'http://gualdo.s3-website-us-west-2.amazonaws.com/web/app/dist/';
 var http            = require('http');
 var express                 = require("express");
 var app                     = express();
@@ -26,7 +28,8 @@ app.get('/', function(){
 });
 
 app.use(router);
-app = connect().use(connect.static("http://gualdo.s3-website-us-west-2.amazonaws.com/web/app/dist"));
+app = connect();
+app.use(serveStatic(directory));
 
 app.listen(port, function(){
     console.log('Listening on port: ' + port);

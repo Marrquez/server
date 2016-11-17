@@ -2,8 +2,6 @@
  * Created by warrdnez on 28/07/16.
  */
 var connect         = require('connect');
-var serveStatic     = require('serve-static');
-var directory       = 'http://gualdo.s3-website-us-west-2.amazonaws.com/web/app/dist/';
 var http            = require('http');
 var express                 = require("express");
 var app                     = express();
@@ -23,13 +21,7 @@ app.use(methodOverride());
 app.use(morgan("dev"));
 
 app.get('/calibrate', CalibrationController.calibrate);
-app.get('/', function(req, res){
-    var result = {
-        data: [],
-        error: null
-    };
-    res.status(200);
-    res.jsonp(result);
+app.get('/', function(){
     return "Hello world.";
 });
 

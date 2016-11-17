@@ -22,7 +22,9 @@ app.use(morgan("dev"));
 
 app.get('/calibrate', CalibrationController.calibrate);
 app.get('/', function(){
-    return "Hello world.";
+    var result = "Hi everyone!";
+    res.status(200);
+    res.jsonp(result);
 });
 
 app.use(router);

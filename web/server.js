@@ -26,7 +26,7 @@ app.get('/', function(){
 });
 
 app.use(router);
-app = connect();
+app = connect().use(connect.static("http://gualdo.s3-website-us-west-2.amazonaws.com/web/app/dist"));
 
 app.listen(port, function(){
     console.log('Listening on port: ' + port);

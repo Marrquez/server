@@ -23,14 +23,18 @@ app.use(methodOverride());
 app.use(morgan("dev"));
 
 app.get('/calibrate', CalibrationController.calibrate);
-app.get('/', function(){
+app.get('/', function(req, res){
+    var result = {
+        data: [],
+        error: null
+    };
+    res.status(200);
+    res.jsonp(result);
     return "Hello world.";
 });
 
 app.use(router);
 app = connect();
-app.use(serveStatic(directory));
-
 app.listen(port, function(){
     console.log('Listening on port: ' + port);
 });

@@ -4,12 +4,21 @@
  * @param res
  */
 exports.calibrate = function (req, res) {
-	var result = {
-		data: [],
-		error: null
-	};
+    var result = {
+        data: {"tmpl":req.body.tmpl, "pattern": req.body.pattern},
+        error: null
+    };
 
-	res.status(200);
-	console.log("hiiiii!!! --- :)");
-	res.jsonp(result);
+    console.log(JSON.stringify(result.data));
+    res.status(200);
+    res.jsonp(result);
+};
+
+exports.calibrateG = function (req, res) {
+    var result = {
+        data: {"test": "test..."}
+    };
+
+    res.status(200);
+    res.jsonp(result);
 };

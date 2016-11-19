@@ -21,6 +21,7 @@ exports.quality = function (req, res) {
     }
 
     console.log("presicion: " + JSON.stringify(result.data));
+
     res.status(200);
     res.jsonp(result);
 };

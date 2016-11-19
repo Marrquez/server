@@ -1,3 +1,4 @@
+web/node_modules/*
 web/node_modules/body-parser/HISTORY.md
 web/node_modules/body-parser/LICENSE
 web/node_modules/body-parser/README.md

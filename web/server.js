@@ -11,7 +11,12 @@ var bodyParser              = require("body-parser");
 var methodOverride          = require("method-override");
 var router                  = express.Router();
 var CalibrationController   = require('./server/controllers/CalibrationController');
-var QualityController   = require('./server/controllers/QualityController');
+var QualityController       = require('./server/controllers/QualityController');
+var cors                    = require('cors');
+
+// use it before all route definitions
+//app.use(cors({origin: 'http://localhost:63342'}));
+app.use(cors({origin: 'http://gualdo.s3-website-us-west-2.amazonaws.com'}));
 
 //para permitir parsear jsons
 app.use(bodyParser.urlencoded({ extended: false }));

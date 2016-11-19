@@ -22,7 +22,7 @@ exports.quality = function (req, res) {
     res.jsonp(result);
 };
 
-exports.qualityG = function (req, res) {
+exports.getQuality = function (req, res) {
     var result = {
         data: {"test": "test... quality"}
     };

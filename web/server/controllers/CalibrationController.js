@@ -14,7 +14,7 @@ exports.calibrate = function (req, res) {
     res.jsonp(result);
 };
 
-exports.calibrateG = function (req, res) {
+exports.getCalibration = function (req, res) {
     var result = {
         data: {"test": "test..."}
     };

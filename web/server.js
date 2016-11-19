@@ -12,11 +12,13 @@ var methodOverride          = require("method-override");
 var router                  = express.Router();
 var CalibrationController   = require('./server/controllers/CalibrationController');
 var QualityController       = require('./server/controllers/QualityController');
+var CatalogController       = require('./server/controllers/CatalogController');
+var UserController       = require('./server/controllers/UserController');
 var cors                    = require('cors');
 
-// use it before all route definitions
-//app.use(cors({origin: 'http://localhost:63342'}));
-app.use(cors({origin: 'http://gualdo.s3-website-us-west-2.amazonaws.com'}));
+// in order to fix: No 'Access-Control-Allow-Origin'
+app.use(cors({origin: 'http://localhost:63342'}));
+//app.use(cors({origin: 'http://gualdo.s3-website-us-west-2.amazonaws.com'}));
 
 //para permitir parsear jsons
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -27,10 +29,16 @@ app.use(methodOverride());
 app.use(morgan("dev"));
 
 app.post('/quality', QualityController.quality);
-app.get('/quality', QualityController.qualityG);
+app.get('/quality', QualityController.getQuality);
+
+app.post('/catalog', CatalogController.catalog);
+app.get('/catalog', CatalogController.getCatalog);
+
+app.post('/user', UserController.user);
+app.get('/user/:id', UserController.getUser);
 
 app.post('/calibrate', CalibrationController.calibrate);
-app.get('/calibrate', CalibrationController.calibrateG);
+app.get('/calibrate', CalibrationController.getCalibration);
 
 app.get('/', function(req, res){
     var result = "Hi everyone!";

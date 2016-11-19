@@ -4,6 +4,10 @@
  * @param res
  */
 exports.quality = function (req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD");
+
     var form = JSON.parse(req.body.tmpl);
     var result = {
         data: {},

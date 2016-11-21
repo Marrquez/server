@@ -1,6 +1,7 @@
 /**
  * Created by warrdnez on 31/07/16.
  */
+var jQuery = require('jquery-deferred');
 var constants = require('../utils/constants');
 
 Catalogs = function (dynamodb) {
@@ -11,7 +12,7 @@ Catalogs = function (dynamodb) {
      * pu: String, s: area
      * */
     this.getCatalogs = function(docClient){
-        var defer = new $.Deferred();
+        var defer = new jQuery.Deferred();
         var params = {
             TableName : constants.DYN_CATALOG_TABLE,
             FilterExpression: "#type = :type",
@@ -42,8 +43,8 @@ Catalogs = function (dynamodb) {
      * Getting all user's catalogs
      * pu: String, type: number
      * */
-    this.getCatalogsOfUser = function(docClient, user, ct){
-        var defer = new $.Deferred();
+    this.getCatalogsOfUser = function(docClient, user_id, ct){
+        var defer = new jQuery.Deferred();
         var params = {
             TableName : constants.DYN_CATALOG_TABLE,
             FilterExpression: "#pu = :pu and #type = :type",
@@ -52,7 +53,7 @@ Catalogs = function (dynamodb) {
                 "#type": "type"
             },
             ExpressionAttributeValues: {
-                ":pu": user.user_id,
+                ":pu": user_id,
                 ":type": ct
             }
         };
@@ -73,7 +74,7 @@ Catalogs = function (dynamodb) {
     };
 
     this.createNewCatalog = function (docClient, catalog) {
-        var defer = new $.Deferred();
+        var defer = new jQuery.Deferred();
         var params = angular.copy(catalog.properties);
         params.n = params.n === ""? " ": params.n;
         params.a = params.a === ""? " ": params.a.toLowerCase();
@@ -96,7 +97,7 @@ Catalogs = function (dynamodb) {
     };
 
     this.getCatalog = function(docClient, ci){
-        var defer = new $.Deferred();
+        var defer = new jQuery.Deferred();
         var params = {
             TableName : constants.DYN_CATALOG_TABLE,
             FilterExpression: "#ci = :ci",
@@ -123,7 +124,7 @@ Catalogs = function (dynamodb) {
      * Updating current user data
      * */
     this.updateCatalog = function(docClient, catalog){
-        var defer = new $.Deferred();
+        var defer = new jQuery.Deferred();
 
         var params = {
             TableName: constants.DYN_CATALOG_TABLE,
@@ -157,7 +158,7 @@ Catalogs = function (dynamodb) {
      * Updating current user data
      * */
     this.updateCatalogHasPattern = function(docClient, catalog){
-        var defer = new $.Deferred();
+        var defer = new jQuery.Deferred();
 
         var params = {
             TableName: constants.DYN_CATALOG_TABLE,
@@ -183,7 +184,7 @@ Catalogs = function (dynamodb) {
     };
 
     this.deleteCatalog = function(docClient, catalog){
-        var defer = new $.Deferred();
+        var defer = new jQuery.Deferred();
 
         var params = {
             TableName: constants.DYN_CATALOG_TABLE,

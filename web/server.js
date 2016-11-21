@@ -18,7 +18,7 @@ var cors                    = require('cors');
 
 // in order to fix: No 'Access-Control-Allow-Origin'
 //app.use(cors({origin: 'http://localhost:63342'}));
-//app.use(cors({origin: 'http://gualdo.s3-website-us-west-2.amazonaws.com:8080'}));
+app.use(cors({origin: 'http://gualdo.s3-website-us-west-2.amazonaws.com:8080'}));
 
 //para permitir parsear jsons
 app.use(bodyParser.urlencoded({ extended: false }));

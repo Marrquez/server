@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="76133e9c-d644-4348-b0e2-b12fea2be4bb" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/server.js" afterPath="$PROJECT_DIR$/web/server.js" />
     </list>
     <ignored path="gualdo.iws" />
@@ -391,12 +390,12 @@
       <workItem from="1479597816299" duration="6273000" />
       <workItem from="1479678095619" duration="5767000" />
       <workItem from="1479749386384" duration="2115000" />
-      <workItem from="1479751719240" duration="174000" />
+      <workItem from="1479751719240" duration="337000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43170000" />
+    <option name="totallyTimeSpent" value="43333000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />

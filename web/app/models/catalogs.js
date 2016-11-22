@@ -75,7 +75,7 @@ Catalogs = function (dynamodb) {
 
     this.createNewCatalog = function (docClient, catalog) {
         var defer = new jQuery.Deferred();
-        var params = angular.copy(catalog.properties);
+        var params = catalog.properties;
         params.n = params.n === ""? " ": params.n;
         params.a = params.a === ""? " ": params.a.toLowerCase();
         params.auxName = params.auxName === ""? " ": params.auxName;
@@ -183,13 +183,13 @@ Catalogs = function (dynamodb) {
         return defer.promise();
     };
 
-    this.deleteCatalog = function(docClient, catalog){
+    this.deleteCatalog = function(docClient, ci){
         var defer = new jQuery.Deferred();
 
         var params = {
             TableName: constants.DYN_CATALOG_TABLE,
             Key:{
-                "ci": catalog.ci
+                "ci": ci
             }
         };
 

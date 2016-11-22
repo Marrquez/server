@@ -31,8 +31,10 @@ app.use(morgan("dev"));
 app.post('/quality', QualityController.quality);
 app.get('/quality', QualityController.getQuality);
 
-//app.post('/catalog', CatalogController.catalog);
-app.get('/catalog/:filters', CatalogController.getCatalogs);
+app.post('/catalog/:params', CatalogController.createCatalog);
+app.put('/catalog/:params', CatalogController.updateCatalog);
+app.delete('/catalog/:params', CatalogController.deleteCatalog);
+app.get('/catalog/:params', CatalogController.getCatalogs);
 
 app.get('/user/:id', UserController.getUser);
 

@@ -28,7 +28,7 @@ app.use(bodyParser.json());
 app.use(methodOverride());
 app.use(morgan("dev"));
 
-app.post('/quality', QualityController.quality);
+app.post('/quality/:params', QualityController.quality);
 app.get('/quality', QualityController.getQuality);
 
 app.post('/catalog/:params', CatalogController.createCatalog);

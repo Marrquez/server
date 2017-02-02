@@ -13,16 +13,15 @@ exports.quality = function (req, res) {
     };
 
     self.calculateSUM = function(elements){
-        var self = this;
         var sum = 0;
         var total = 0;
 
-        var visiblesElements = elements.filter(function(element){
+        var visibles = elements.filter(function(element){
             return (element.render && element.render.properties.display === true) || (element.container && element.container.properties.display === true);
         });
 
-        for(var i = 0; i < visiblesElements.length; i++){
-            var element = visiblesElements[i];
+        for(var i = 0; i < visibles.length; i++){
+            var element = visibles[i];
 
             if(element.render){
                 console.log(element.render);
@@ -37,17 +36,16 @@ exports.quality = function (req, res) {
     };
 
     self.calculateAVG = function(elements){
-        var self = this;
         var sum = 0;
         var total = 0;
         var corrects = 0;
 
-        var visiblesElements = elements.filter(function(element){
+        var visibles = elements.filter(function(element){
             return (element.render && element.render.properties.display === true) || (element.container && element.container.properties.display === true);
         });
 
-        for(var i = 0; i < visiblesElements.length; i++){
-            var element = visiblesElements[i];
+        for(var i = 0; i < visibles.length; i++){
+            var element = visibles[i];
 
             if(element.render){
                 console.log(element.render);
@@ -63,7 +61,60 @@ exports.quality = function (req, res) {
         return {"avg": sum/total, "corrects": corrects};
     };
 
-    self.calculateADVAVG = function(){};
+    self.calculateADVAVG = function(elements){
+        var sum = 0;
+        var corrects = 0;
+        var totalWeight = 0;
+
+        var visibles = elements.filter(function(element){
+            return (element.render && element.render.properties.display === true) ||
+                        (element.container && element.container.properties.display === true);
+        });
+
+        var notAppliers = visibles.filter(function(element){
+            return (element.render && element.render.properties.value &&
+                        element.render.properties.value.toString().toLowerCase() === element.render.properties.distribution.toString().toLowerCase());
+        });
+
+        var appliers = visibles.filter(function(element){
+            if(element.render && element.render.properties.value &&
+                element.render.properties.value.toString().toLowerCase() !== element.render.properties.distribution.toString().toLowerCase()){
+                totalWeight += element.render.properties.weight;
+                return true;
+            }else{
+                return false;
+            }
+        });
+
+        for(var i = 0; i < appliers.length; i++){
+            var element = appliers[i];
+            if(!element.render.properties.weight){
+                element.render.properties.weight = 0;
+            }
+
+            var prom = ( element.render.properties.weight * 100 ) / totalWeight;
+
+            for(var j = 0; j < notAppliers.length; j++){
+                var subEle = notAppliers[j];
+                if(!subEle.render.properties.weight){
+                    subEle.render.properties.weight = 0;
+                }
+
+                element.render.properties.weight += ( prom / 100) * subEle.render.properties.weight;
+            }
+        }
+
+        for(var i = 0; i < appliers.length; i++){
+            var element = appliers[i];
+
+            if(element.render.properties.value.toString().toLowerCase() === element.render.properties.correct.toString().toLowerCase()){
+                sum += element.render.properties.weight;
+                corrects++;
+            }
+        }
+
+        return {"advavg": sum, "corrects": corrects};
+    };
 
     self.calculateBOOL = function(){};
 
@@ -80,23 +131,25 @@ exports.quality = function (req, res) {
                     result: {}
                 };
 
+                calcResult.groupName = element.container.properties.displayName;
+
                 switch (element.container.properties.value){
                     case "sum":
                         calcResult.operator = "sum";
-                        calcResult.groupName = element.container.properties.displayName;
                         calcResult.result = self.calculateSUM(element.container.elements);
                         self.qualities.push(calcResult);
                         break;
 
                     case "avg":
                         calcResult.operator = "avg";
-                        calcResult.groupName = element.container.properties.displayName;
                         calcResult.result = self.calculateAVG(element.container.elements);
                         self.qualities.push(calcResult);
                         break;
 
                     case "advavg":
-                        self.calculateADVAVG(element.container.elements);
+                        calcResult.operator = "advavg";
+                        calcResult.result = self.calculateADVAVG(element.container.elements);
+                        self.qualities.push(calcResult);
                     break;
 
                     case "bool":

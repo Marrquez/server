@@ -43,6 +43,61 @@ Catalogs = function (dynamodb) {
      * Getting all user's catalogs
      * pu: String, type: number
      * */
+    this.getCatalogsOfUserByArea = function(docClient, user_id, ct, a){
+        var defer = new jQuery.Deferred();
+
+        var filterExpression = "#type = :type and (";
+        var ExpressionAttributeValues = '{":type": ' + ct + ', ';
+        var areas = JSON.parse(a);
+
+        if(areas.length === 0){
+            filterExpression += "#a = :a";
+            ExpressionAttributeValues += '":a": ""';
+        }
+
+        for(var i = 0; i < areas.length; i++){
+            if(i < areas.length - 1){
+                filterExpression += "#a = :a" + i + " OR ";
+                ExpressionAttributeValues += '":a' + i + '": "' + areas[i].value.toLowerCase() + '", ';
+            }else{
+                filterExpression += "#a = :a" + i;
+                ExpressionAttributeValues += '":a' + i + '": "' + areas[i].value.toLowerCase() + '"';
+            }
+        }
+
+        filterExpression += ")";
+        ExpressionAttributeValues += "}";
+        var AttributeValues = JSON.parse(ExpressionAttributeValues);
+
+        var params = {
+            TableName : constants.DYN_CATALOG_TABLE,
+            FilterExpression: filterExpression,
+            ExpressionAttributeNames:{
+                "#type": "type",
+                "#a": "a"
+            },
+            ExpressionAttributeValues: AttributeValues
+        };
+
+        docClient.scan(params, function(err, data) {
+            if (err) {
+                if(data && data.Items.length === 0){
+                    defer.resolve([]);
+                }else{
+                    defer.reject();
+                }
+            } else {
+                defer.resolve(data.Items);
+            }
+        });
+
+        return defer.promise();
+    };
+
+    /**
+     * Getting all user's catalogs
+     * pu: String, type: number
+     * */
     this.getCatalogsOfUser = function(docClient, user_id, ct){
         var defer = new jQuery.Deferred();
         var params = {
@@ -80,6 +135,7 @@ Catalogs = function (dynamodb) {
         params.a = params.a === ""? " ": params.a.toLowerCase();
         params.auxName = params.auxName === ""? " ": params.auxName;
         params.cd = JSON.stringify(catalog.elements);
+        params.cm = JSON.stringify(catalog.cm);
         params.c = JSON.stringify(catalog.c);
 
         docClient.put({
@@ -131,12 +187,13 @@ Catalogs = function (dynamodb) {
             Key:{
                 "ci": catalog.ci
             },
-            UpdateExpression: "set auxName = :auxName, cd = :cd, hasPattern = :hasPattern, n = :n, c = :c, a = :a",
+            UpdateExpression: "set auxName = :auxName, cd = :cd, hasPattern = :hasPattern, n = :n, cm = :cm, c = :c, a = :a",
             ExpressionAttributeValues:{
                 ":auxName": catalog.auxName,
                 ":cd": catalog.cd,
                 ":hasPattern": catalog.hasPattern,
                 ":n": catalog.n,
+                ":cm": catalog.cm,
                 ":c": catalog.c,
                 ":a": catalog.a.toLowerCase()
             },

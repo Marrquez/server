@@ -72,12 +72,12 @@ exports.quality = function (req, res) {
         });
 
         var notAppliers = visibles.filter(function(element){
-            return (element.render && element.render.properties.value &&
+            return (element.render && element.render.properties.value && element.render.properties.distribution &&
                         element.render.properties.value.toString().toLowerCase() === element.render.properties.distribution.toString().toLowerCase());
         });
 
         var appliers = visibles.filter(function(element){
-            if(element.render && element.render.properties.value &&
+            if(element.render && element.render.properties.value && element.render.properties.distribution &&
                 element.render.properties.value.toString().toLowerCase() !== element.render.properties.distribution.toString().toLowerCase()){
                 totalWeight += element.render.properties.weight;
                 return true;

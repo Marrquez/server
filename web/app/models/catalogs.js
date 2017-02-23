@@ -137,6 +137,7 @@ Catalogs = function (dynamodb) {
         params.cd = JSON.stringify(catalog.elements);
         params.cm = JSON.stringify(catalog.cm);
         params.c = JSON.stringify(catalog.c);
+        params.q = JSON.stringify(catalog.q);
 
         docClient.put({
             "TableName": constants.DYN_CATALOG_TABLE,
@@ -187,7 +188,7 @@ Catalogs = function (dynamodb) {
             Key:{
                 "ci": catalog.ci
             },
-            UpdateExpression: "set auxName = :auxName, cd = :cd, hasPattern = :hasPattern, n = :n, cm = :cm, c = :c, a = :a",
+            UpdateExpression: "set auxName = :auxName, cd = :cd, hasPattern = :hasPattern, n = :n, cm = :cm, c = :c, a = :a, q = :q",
             ExpressionAttributeValues:{
                 ":auxName": catalog.auxName,
                 ":cd": catalog.cd,
@@ -195,7 +196,8 @@ Catalogs = function (dynamodb) {
                 ":n": catalog.n,
                 ":cm": catalog.cm,
                 ":c": catalog.c,
-                ":a": catalog.a.toLowerCase()
+                ":a": catalog.a.toLowerCase(),
+                ":q": catalog.q
             },
             ReturnValues:"UPDATED_NEW"
         };

@@ -24,7 +24,6 @@ exports.quality = function (req, res) {
             var element = visibles[i];
 
             if(element.render){
-                console.log(element.render);
                 if(element.render.properties.value && element.render.properties.value.toString().toLowerCase() === element.render.properties.correct.toString().toLowerCase()){
                     sum += element.render.properties.weight;
                     total++;
@@ -48,7 +47,6 @@ exports.quality = function (req, res) {
             var element = visibles[i];
 
             if(element.render){
-                console.log(element.render);
                 if(element.render.properties.value && element.render.properties.value.toString().toLowerCase() === element.render.properties.correct.toString().toLowerCase()){
                     sum += element.render.properties.weight;
                     corrects++;
@@ -169,8 +167,6 @@ exports.quality = function (req, res) {
     }else {
         result.data.precision = 0;
     }
-
-    console.log("presicion: " + JSON.stringify(result.data));
 
     res.status(200);
     res.jsonp(result);

@@ -13,18 +13,16 @@ Users = function (dynamodb) {
      * password: String
      * state == 1
      * */
-    this.getLoggedUser = function(docClient, ua){
+    this.getDomainUser = function(docClient, uk){
         var defer = new jQuery.Deferred();
         var params = {
             TableName : constants.DYN_USERS_TABLE,
-            FilterExpression: "#uk = :uk and #s = :s",
+            FilterExpression: "#uk = :uk",
             ExpressionAttributeNames:{
-                "#uk": "uk",
-                "#s": "s"
+                "#uk": "uk"
             },
             ExpressionAttributeValues: {
-                ":uk": ua,
-                ":s": 1
+                ":uk": uk
             }
         };
 

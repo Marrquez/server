@@ -8,9 +8,9 @@ var aws = new awsSingleton();
 var docClient = aws.docClient;
 var jQuery = require('jquery-deferred');
 
-exports.getDomainUser = function (req, res) {
-    var domain = req.query.domain;
-    jQuery.when(aws.DynamoUsers.getDomainUser(docClient, domain)).done(function(resp){
+exports.getUser = function (req, res) {
+    var id = req.query.id;
+    jQuery.when(aws.DynamoUsers.getDomainUser(docClient, id)).done(function(resp){
         res.status(200);
         res.jsonp({"data": resp});
     }).fail(function(){

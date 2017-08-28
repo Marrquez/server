@@ -6,10 +6,7 @@ module.exports = {
     CONNECTED: 'connected!',
     ERROR: 'error',
     SUCCESS: 'success',
-    //AK: "AKIAJYADQSGTV46IUMRQ",
-    AK: "AKIAJKRESXHJFSA7LSOQ",
-    //SAK: "q31f+zSr8/6DSXGJAhwLxVgHnqqb+JNkGRNqPjrc",
-    SAK: "k9wbtULsJYcudeHdrkziJMbeii5AoWGHMoGUwLWL",
+    
 
     // dynamo request constants
     DYN_GET_USERS: 'dynamo_get_users',

@@ -13,12 +13,13 @@ var router                  = express.Router();
 //var CalibrationController   = require('./server/controllers/CalibrationController');
 //var QualityController       = require('./server/controllers/QualityController');
 //var CatalogController       = require('./server/controllers/CatalogController');
-var UserController          = require('./server/controllers/UserController');
+//var UserController          = require('./server/controllers/UserController');
+var EjercicioController          = require('./server/controllers/EjercicioController');
 var cors                    = require('cors');
 
 // in order to fix: No 'Access-Control-Allow-Origin'
-//app.use(cors({origin: 'http://localhost:4200'}));
-app.use(cors({origin: 'http://kiinitro.s3-website-us-west-2.amazonaws.com'}));
+app.use(cors({origin: 'http://localhost:8100'}));
+//app.use(cors({origin: 'http://kiinitro.s3-website-us-west-2.amazonaws.com'}));
 
 //para permitir parsear jsons
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -28,7 +29,7 @@ app.use(bodyParser.json());
 app.use(methodOverride());
 app.use(morgan("dev"));
 
-app.get('/getUser', UserController.getUser);
+app.get('/getEjercicio', EjercicioController.getEjercicio);
 /*app.post('/quality/:params', QualityController.quality);
 app.get('/quality', QualityController.getQuality);
 app.post('/catalog/:params', CatalogController.createCatalog);

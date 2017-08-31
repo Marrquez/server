@@ -19,3 +19,15 @@ exports.getEjercicio = function (req, res) {
         res.jsonp({"error": "mai_server_loggin_locked_user"});
     });
 };
+
+exports.getEjercicesByMuscle = function (req, res) {
+    var muscles = req.query.muscles;
+    console.log(muscles);
+    jQuery.when(aws.DynamoEjercicios.getEjercicesByMuscle(docClient, muscles)).done(function(resp){
+        res.status(200);
+        res.jsonp({"data": resp});
+    }).fail(function(){
+        res.status(204);
+        res.jsonp({"error": "mai_server_loggin_locked_user"});
+    });
+};

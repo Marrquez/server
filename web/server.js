@@ -30,6 +30,7 @@ app.use(methodOverride());
 app.use(morgan("dev"));
 
 app.get('/getEjercicio', EjercicioController.getEjercicio);
+app.get('/getEjercicesByMuscle', EjercicioController.getEjercicesByMuscle);
 /*app.post('/quality/:params', QualityController.quality);
 app.get('/quality', QualityController.getQuality);
 app.post('/catalog/:params', CatalogController.createCatalog);

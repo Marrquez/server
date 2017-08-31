@@ -36,6 +36,49 @@ Ejercicio = function (dynamodb) {
 
         return defer.promise();
     };
+
+    this.getEjercicesByMuscle = function(docClient, muscles){
+        var defer = new jQuery.Deferred();
+        var muscles = JSON.parse(muscles);
+        var filterExpression = "";
+        var ExpressionAttributeValues = '{ ';
+
+        for(var i = 0; i < muscles.length; i++){
+            if(i < muscles.length - 1){
+                filterExpression += "#musculo = :m" + i + " OR ";
+                ExpressionAttributeValues += '":m' + i + '": "' + muscles[i] + '", ';
+            }else{
+                filterExpression += "#musculo = :m" + i;
+                ExpressionAttributeValues += '":m' + i + '": "' + muscles[i] + '"';
+            }
+        }
+
+        ExpressionAttributeValues += "}";
+        var AttributeValues = JSON.parse(ExpressionAttributeValues);
+
+        var params = {
+            TableName : constants.DYN_EJERCICIOS_TABLE,
+            FilterExpression: filterExpression,
+            ExpressionAttributeNames:{
+                "#musculo": "musculo"
+            },
+            ExpressionAttributeValues: AttributeValues
+        };
+
+        docClient.scan(params, function(err, data) {
+            if (err) {
+                if(data && data.Items.length === 0){
+                    defer.resolve([]);
+                }else{
+                    defer.reject();
+                }
+            } else {
+                defer.resolve(data.Items);
+            }
+        });
+
+        return defer.promise();
+    };
 };
 
 module.exports = Ejercicio;

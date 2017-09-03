@@ -41,5 +41,6 @@ exports.getEjerciciobyId = function (req, res) {
     }).fail(function(){
         res.status(204);
         res.jsonp({"error": "mai_server_loggin_locked_user"});
+
     });
 };

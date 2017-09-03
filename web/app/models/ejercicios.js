@@ -88,6 +88,7 @@ Ejercicio = function (dynamodb) {
     //**************************************
     this.getEjerciciobyId = function(docClient, id){
         var defer = new jQuery.Deferred();
+
         var params = {
             TableName : constants.DYN_EJERCICIOS_TABLE,
             ProjectionExpression: ["imagen","nombre","descripcion","series","repeticiones"],

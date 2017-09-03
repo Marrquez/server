@@ -32,6 +32,7 @@ exports.getEjercicesByMuscle = function (req, res) {
     });
 };
 
+
 exports.getEjerciciobyId = function (req, res) {
     var id = req.query.id;
     console.log(id);

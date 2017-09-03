@@ -33,6 +33,7 @@ app.get('/getEjercicio', EjercicioController.getEjercicio);
 app.get('/getEjercicesByMuscle', EjercicioController.getEjercicesByMuscle);
 app.get('/getEjercicioById', EjercicioController.getEjerciciobyId);
 
+
 /*app.post('/quality/:params', QualityController.quality);
 app.get('/quality', QualityController.getQuality);
 app.post('/catalog/:params', CatalogController.createCatalog);

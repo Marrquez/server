@@ -24,6 +24,8 @@ Ejercicio = function (dynamodb) {
             ExpressionAttributeValues: {
                 ":id": id
             }
+
+
         };
 
         docClient.scan(params, function(err, data) {
@@ -79,6 +81,38 @@ Ejercicio = function (dynamodb) {
 
         return defer.promise();
     };
+
+    /*
+    *   Busqueda de ejercicio por id
+    */
+    //**************************************
+    this.getEjerciciobyId = function(docClient, id){
+        var defer = new jQuery.Deferred();
+        var params = {
+            TableName : constants.DYN_EJERCICIOS_TABLE,
+            ProjectionExpression: ["imagen","nombre","descripcion","series","repeticiones"],
+            FilterExpression: "#id = :id",
+            ExpressionAttributeNames:{
+                "#id": "id"
+            },
+            ExpressionAttributeValues: {
+                ":id": id
+            }
+
+
+        };
+
+        docClient.scan(params, function(err, data) {
+            if (err || data.Items.length === 0) {
+                defer.reject();
+            } else {
+                defer.resolve(data.Items[0]);
+            }
+        });
+
+        return defer.promise();
+    };
+    //**************************************
 };
 
 module.exports = Ejercicio;

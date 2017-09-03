@@ -31,3 +31,15 @@ exports.getEjercicesByMuscle = function (req, res) {
         res.jsonp({"error": "mai_server_loggin_locked_user"});
     });
 };
+
+exports.getEjerciciobyId = function (req, res) {
+    var id = req.query.id;
+    console.log(id);
+    jQuery.when(aws.DynamoEjercicios.getEjerciciobyId(docClient, id)).done(function(resp){
+        res.status(200);
+        res.jsonp({"data": resp});
+    }).fail(function(){
+        res.status(204);
+        res.jsonp({"error": "mai_server_loggin_locked_user"});
+    });
+};

@@ -29,10 +29,9 @@ app.use(bodyParser.json());
 app.use(methodOverride());
 app.use(morgan("dev"));
 
-app.get('/getEjercicio', EjercicioController.getEjercicio);
-app.get('/getEjercicesByMuscle', EjercicioController.getEjercicesByMuscle);
-app.get('/getEjercicioById', EjercicioController.getEjerciciobyId);
-
+app.get('/get-ejercicio', EjercicioController.getEjercicio);
+app.get('/get-ejercicesByMuscle', EjercicioController.getEjercicesByMuscle);
+app.get('/get-ejercicioById', EjercicioController.getEjerciciobyId);
 
 /*app.post('/quality/:params', QualityController.quality);
 app.get('/quality', QualityController.getQuality);
@@ -51,6 +50,6 @@ app.get('/', function(req, res){
 });
 
 app.use(router);
-app.listen(port,'0.0.0.0', function(){
+app.listen(port, function(){
     console.log('Listening on port: ' + port);
 });

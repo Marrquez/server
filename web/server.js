@@ -18,7 +18,7 @@ var EjercicioController          = require('./server/controllers/EjercicioContro
 var cors                    = require('cors');
 
 // in order to fix: No 'Access-Control-Allow-Origin'
-app.use(cors({origin: '*'}));
+app.use(cors({origin: 'com.kiinitro.kiinitro_app'}));
 //app.use(cors({origin: 'http://kiinitro.s3-website-us-west-2.amazonaws.com'}));
 
 //para permitir parsear jsons

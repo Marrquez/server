@@ -13,8 +13,8 @@ var router                  = express.Router();
 //var CalibrationController   = require('./server/controllers/CalibrationController');
 //var QualityController       = require('./server/controllers/QualityController');
 //var CatalogController       = require('./server/controllers/CatalogController');
-//var UserController          = require('./server/controllers/UserController');
-var EjercicioController          = require('./server/controllers/EjercicioController');
+var UserController          = require('./server/controllers/UserController');
+var EjercicioController     = require('./server/controllers/EjercicioController');
 var cors                    = require('cors');
 
 // in order to fix: No 'Access-Control-Allow-Origin'
@@ -32,6 +32,7 @@ app.use(morgan("dev"));
 app.get('/get-ejercicio', EjercicioController.getEjercicio);
 app.get('/get-ejercicesByMuscle', EjercicioController.getEjercicesByMuscle);
 app.get('/get-ejercicioById', EjercicioController.getEjerciciobyId);
+app.get('/upd-userPoints', UserController.updateUserPoints);
 
 /*app.post('/quality/:params', QualityController.quality);
 app.get('/quality', QualityController.getQuality);

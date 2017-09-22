@@ -6,8 +6,7 @@ module.exports = {
     CONNECTED: 'connected!',
     ERROR: 'error',
     SUCCESS: 'success',
-
-
+   
     // dynamo request constants
     DYN_GET_USERS: 'dynamo_get_users',
     DYN_GET_MEDIA: 'dynamo_get_media',
@@ -29,6 +28,8 @@ module.exports = {
     // dynamo tables
     DYN_USERS_TABLE: 'user',
     DYN_EJERCICIOS_TABLE: 'ejercicios',
+    DYN_USER_TABLE: 'T_User',
+    DYN_USERSESSIONLOG_TABLE: 'T_UserSessionLog',
     DYN_CATALOG_TABLE: 'Catalog',
     DYN_MEDIA_TABLE: 'aws_node_demo_dynamo_media',
     DYN_EMAIL_TABLE: 'aws_node_demo_dynamo_emails',

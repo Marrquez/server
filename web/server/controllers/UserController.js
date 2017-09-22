@@ -18,3 +18,17 @@ exports.getUser = function (req, res) {
         res.jsonp({"error": "mai_server_loggin_locked_user"});
     });
 };
+
+exports.updateUserPoints = function (req, res, res) {
+    var points = req.query.points;
+    var iUserId = req.query.idUser;
+    console.log(points);
+    console.log(iUserId);
+    jQuery.when(aws.DynamoEjercicios.updateUserPoints(docClient,iUserId, points)).done(function(resp){
+        res.status(200);
+        res.jsonp({"data": resp});
+    }).fail(function(){
+        res.status(204);
+        res.jsonp({"error": "mai_server_loggin_locked_user"});
+    });
+};

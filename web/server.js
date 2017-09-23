@@ -32,7 +32,10 @@ app.use(morgan("dev"));
 app.get('/get-ejercicio', EjercicioController.getEjercicio);
 app.get('/get-ejercicesByMuscle', EjercicioController.getEjercicesByMuscle);
 app.get('/get-ejercicioById', EjercicioController.getEjerciciobyId);
-app.get('/upd-userPoints', UserController.updateUserPoints);
+app.get('/get-userInfo', UserController.getUserInfo);
+app.get('/ins-userInfo', UserController.InsertUserData);
+app.get('/upd-userPoints', UserController.UpdateUserPoints);
+
 
 /*app.post('/quality/:params', QualityController.quality);
 app.get('/quality', QualityController.getQuality);

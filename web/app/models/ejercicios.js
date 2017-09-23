@@ -39,6 +39,7 @@ Ejercicio = function (dynamodb) {
         return defer.promise();
     };
 
+//*******************************************************
     this.getEjercicesByMuscle = function(docClient, muscles){
         var defer = new jQuery.Deferred();
         var muscles = JSON.parse(muscles);
@@ -89,7 +90,7 @@ Ejercicio = function (dynamodb) {
     */
     //**************************************
     this.getEjerciciobyId = function(docClient, id){
-      /*  var defer = new jQuery.Deferred();
+        var defer = new jQuery.Deferred();
 
         var params = {
             TableName : constants.DYN_EJERCICIOS_TABLE,
@@ -101,8 +102,6 @@ Ejercicio = function (dynamodb) {
             ExpressionAttributeValues: {
                 ":id": id
             }
-
-
         };
 
         docClient.scan(params, function(err, data) {
@@ -114,37 +113,6 @@ Ejercicio = function (dynamodb) {
         });
 
         return defer.promise();
-        */
-
-        //*-----------------------
-        var defer = new jQuery.Deferred();
-        var points = 10;
-
-        var params = {
-            TableName : constants.DYN_USER_TABLE,
-            ExpressionAttributeNames:{
-                "#iPoints": points
-            },
-            ExpressionAttributeValues: {
-                "iPts": points
-            },
-            Key:{
-                "#iUserId": "id"
-            },
-            UpdateExpression: "SET #iPoints : iPts"
-        };
-
-        docClient.updateItem(params, function(err, data) {
-            if (err || data.Items.length === 0) {
-                defer.reject();
-            } else {
-                defer.resolve(data.Items[0]);
-            }
-        });
-
-        return defer.promise();
-
-        //*-----------------------
     };
     //**************************************
 };

@@ -37,35 +37,71 @@ Users = function (dynamodb) {
         return defer.promise();
     };
     //<summary>
-    // Metodo que actializa los puntos asignados a un usuario
+    // Metodo que inserta los datos de un usuario
     //</summary>
     //<remarks>
     //     <para><version>1.0.000</version><cambio>Creado</cambio><fecha>2017/09/21</fecha></para>
     //</remarks>
     //<param name="docClient">Identifica la conexion a la base de datos
-    //<param name="idUser">Identifica el identificador del usuario</param>
-    //<param name="iPoints">Identifica el puntaje a asignarle al usuario</param>
+    //<param name="idUser">identificador del usuario</param>
+    //<param name="Username">Nombre del usuario</param>
+    //<param name="Points">puntaje a asignarle al usuario</param>
     //<history>
     // Nestor Cepeda - 2017/09/21
     //</history>
-    this.updateUserPoints = function(docClient, idUser, Points){
+    this.InsertUserData = function (docClient, idUser, Username, Points){
         var defer = new jQuery.Deferred();
 
         var params = {
             TableName : constants.DYN_USER_TABLE,
-            ExpressionAttributeNames:{
-                "#iPoints": "Points"
-            },
-            ExpressionAttributeValues: {
-                "iPts": Points
-            },
-            Key:{
-                "#iUserId": "idUser"
-            },
-            UpdateExpression: "SET #iPoints : iPts"
+            Item:{
+                "iUserId": idUser,
+                'vchUsername': Username,
+                'iPoints': Points
+
+            }
         };
 
-        docClient.updateItem(params, function(err, data) {
+        docClient.put(params, function(err, data) {
+            if (err ) {
+                defer.reject();
+                console.log("Unable to insert item. Error: ", JSON.stringify(err, null, 2));
+            } else {
+                defer.resolve();
+                console.log("Inserted item succeeded: ", JSON.stringify(data, null, 2));
+            }
+        });
+
+        return defer.promise();
+    };
+    //**************************************
+    //<summary>
+    // Metodo que consulta la ingformacion del usuario por medio del id de usuari
+    //</summary>
+    //<remarks>
+    //     <para><version>1.0.000</version><cambio>Creado</cambio><fecha>2017/09/23</fecha></para>
+    //</remarks>
+    //<param name="docClient">Identifica la conexion a la base de datos
+    //<param name="idUser">Identifica el identificador del usuario</param>
+    //<history>
+    // Nestor Cepeda - 2017/09/21
+    //</history>
+    this.getUserInfo = function(docClient, idUser){
+        var defer = new jQuery.Deferred();
+
+        var params = {
+
+            ProjectionExpression: ["iUserId","vchUsername","iPoints"],
+            ExpressionAttributeNames:{
+                "#iUserId": "iUserId"
+            },
+            ExpressionAttributeValues: {
+                ":iUserId": idUser
+            },
+            FilterExpression: "#iUserId = :iUserId",
+            TableName: constants.DYN_USER_TABLE
+        };
+        docClient.scan(params, function(err, data) {
             if (err || data.Items.length === 0) {
                 defer.reject();
             } else {
@@ -74,8 +110,46 @@ Users = function (dynamodb) {
         });
 
         return defer.promise();
+
+
     };
-    //**************************************
+    //<summary>
+    // Metodo que actualiza los puntos de un usuario
+    //</summary>
+    //<remarks>
+    //     <para><version>1.0.000</version><cambio>Creado</cambio><fecha>2017/09/23</fecha></para>
+    //</remarks>
+    //<param name="docClient">Identifica la conexion a la base de datos
+    //<param name="idUser">identificador del usuario</param>
+    //<param name="Points">puntaje a asignarle al usuario</param>
+    //<history>
+    // Nestor Cepeda - 2017/09/23
+    //</history>
+    this.UpdateUserPoints = function (docClient, idUser, Points){
+        var defer = new jQuery.Deferred();
+
+        var params = {
+            TableName : constants.DYN_USER_TABLE,
+            Key:{"iUserId": {"S":idUser}},
+            UpdateExpression:"SET iPoints = :ipts",
+            ExpressionAttributeValues:{":ipts": {"N":Points}},
+            ReturnValues: "UPDATED_NEW"
+        };
+
+        docClient.updateItem(params, function(err, data) {
+            if (err ) {
+                defer.reject();
+                console.log("Unable to update item. Error: ", JSON.stringify(err, null, 2));
+            } else {
+                defer.resolve();
+                console.log("Updated item succeeded: ", JSON.stringify(data, null, 2));
+            }
+        });
+
+        return defer.promise();
+    };
+
+
 };
 
 module.exports = Users;

@@ -6,6 +6,7 @@
 var awsSingleton = require("../../app/awsconfig/config.js");
 var aws = new awsSingleton();
 var docClient = aws.docClient;
+var dynamodb = aws.dynamodb;
 var jQuery = require('jquery-deferred');
 
 exports.getUser = function (req, res) {
@@ -19,16 +20,43 @@ exports.getUser = function (req, res) {
     });
 };
 
-exports.updateUserPoints = function (req, res, res) {
+exports.InsertUserData = function (req) {
+    var idUser = req.query.idUser;
+    var username = req.query.username;
     var points = req.query.points;
-    var iUserId = req.query.idUser;
     console.log(points);
+    console.log(idUser);
+    console.log(username);
+    jQuery.when(aws.DynamoUsers.InsertUserData(docClient,idUser, username, points)).done(function (resp) {
+        console.log("Insert succeeded" );
+    }).fail(function () {
+        console.log("Insert Failed: ");
+    });
+};
+
+exports.UpdateUserPoints = function (req) {
+    var idUser = req.query.idUser;
+    var points = req.query.points;
+    console.log(points);
+    console.log(idUser);
+    jQuery.when(aws.DynamoUsers.UpdateUserPoints(dynamodb,idUser, points)).done(function (resp) {
+        console.log("Update succeeded" );
+    }).fail(function () {
+        console.log("Update Failed: ");
+    });
+};
+
+
+
+exports.getUserInfo = function (req, res) {
+    var iUserId = req.query.idUser;
     console.log(iUserId);
-    jQuery.when(aws.DynamoEjercicios.updateUserPoints(docClient,iUserId, points)).done(function(resp){
+    jQuery.when(aws.DynamoUsers.getUserInfo(docClient, iUserId)).done(function (resp) {
         res.status(200);
         res.jsonp({"data": resp});
-    }).fail(function(){
+    }).fail(function () {
         res.status(204);
         res.jsonp({"error": "mai_server_loggin_locked_user"});
     });
 };
+

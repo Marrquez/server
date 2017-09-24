@@ -35,6 +35,7 @@ app.get('/get-ejercicioById', EjercicioController.getEjerciciobyId);
 app.get('/get-userInfo', UserController.getUserInfo);
 app.get('/ins-userInfo', UserController.InsertUserData);
 app.get('/upd-userPoints', UserController.UpdateUserPoints);
+app.get('/ins-userSessioLog', UserController.InsertUserSSLog);
 
 
 /*app.post('/quality/:params', QualityController.quality);

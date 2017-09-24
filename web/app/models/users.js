@@ -148,7 +148,47 @@ Users = function (dynamodb) {
 
         return defer.promise();
     };
+    //<summary>
+    // Metodo que inserta el log de la sesiones de un usuario
+    //</summary>
+    //<remarks>
+    //     <para><version>1.0.000</version><cambio>Creado</cambio><fecha>2017/09/23</fecha></para>
+    //</remarks>
+    //<param name="docClient">Identifica la conexion a la base de datos
+    //<param name="idUser">identificador del usuario</param>
+    //<param name="begin">fecha de inicio de la sesion</param>
+    //<param name="end">fecha de fin de la sesion</param>
+    //<history>
+    // Nestor Cepeda - 2017/09/23
+    //</history>
+    this.InsertUserSSLog = function (docClient, idUser, dBegin, dEnd){
+        var defer = new jQuery.Deferred();
+        var uuid = require('uuid');
+        uuid.v1();
 
+        var params = {
+            TableName : constants.DYN_USERSESSIONLOG_TABLE,
+            Item:{
+                "iUserSessionLog": uuid.v1(),
+                "iUserId": idUser,
+                'dtSessionBegin': dBegin,
+                'dtSessionEnd': dEnd
+
+            }
+        };
+
+        docClient.put(params, function(err, data) {
+            if (err ) {
+                defer.reject();
+                console.log("Unable to insert item. Error: ", JSON.stringify(err, null, 2));
+            } else {
+                defer.resolve();
+                console.log("Inserted item succeeded: ", JSON.stringify(data, null, 2));
+            }
+        });
+
+        return defer.promise();
+    };
 
 };
 

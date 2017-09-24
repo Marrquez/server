@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="76133e9c-d644-4348-b0e2-b12fea2be4bb" name="Default" comment="Se crean los metodos para consultar, insertar y actualizar informacion de los usuarios.">
+    <list default="true" id="76133e9c-d644-4348-b0e2-b12fea2be4bb" name="Default" comment="Se crea el metodo de insercion de log de sesiones por usuario">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/server/controllers/UserController.js" afterPath="$PROJECT_DIR$/web/server/controllers/UserController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/app/utils/constants.js" afterPath="$PROJECT_DIR$/web/app/utils/constants.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/app/models/ejercicios.js" afterPath="$PROJECT_DIR$/web/app/models/ejercicios.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/server.js" afterPath="$PROJECT_DIR$/web/server.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/app/models/users.js" afterPath="$PROJECT_DIR$/web/app/models/users.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -37,8 +35,8 @@
       <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="1105">
-              <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="1122">
+              <caret line="37" column="10" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -57,8 +55,8 @@
       <file leaf-file-name="UserController.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/server/controllers/UserController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1156">
-              <caret line="46" column="2" selection-start-line="46" selection-start-column="2" selection-end-line="46" selection-end-column="2" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="829" max-vertical-offset="1445">
+              <caret line="70" column="47" selection-start-line="70" selection-start-column="32" selection-end-line="70" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -67,16 +65,16 @@
       <file leaf-file-name="users.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/app/models/users.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="901">
-              <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="557" max-vertical-offset="1513">
+              <caret line="176" column="13" selection-start-line="176" selection-start-column="13" selection-end-line="176" selection-end-column="13" />
               <folding>
                 <element signature="e#198#304#0" expanded="false" />
                 <element signature="e#353#956#0" expanded="false" />
                 <element signature="e#962#973#0" expanded="false" />
                 <element signature="e#1567#2250#0" expanded="false" />
                 <element signature="e#2256#2296#0" expanded="false" />
+                <element signature="e#2808#3512#0" expanded="false" />
                 <element signature="e#3518#3529#0" expanded="false" />
-                <element signature="e#4062#4805#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -107,7 +105,7 @@
       <file leaf-file-name="constants.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/app/utils/constants.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.22077923" vertical-offset="0" max-vertical-offset="850">
+            <state vertical-scroll-proportion="0.055194806" vertical-offset="102" max-vertical-offset="850">
               <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding />
             </state>
@@ -140,9 +138,9 @@
         <option value="$PROJECT_DIR$/web/server/controllers/QualityController.js" />
         <option value="$PROJECT_DIR$/web/server/controllers/EjercicioController.js" />
         <option value="$PROJECT_DIR$/web/app/models/ejercicios.js" />
+        <option value="$PROJECT_DIR$/web/server.js" />
         <option value="$PROJECT_DIR$/web/server/controllers/UserController.js" />
         <option value="$PROJECT_DIR$/web/app/models/users.js" />
-        <option value="$PROJECT_DIR$/web/server.js" />
         <option value="$PROJECT_DIR$/web/app/utils/constants.js" />
       </list>
     </option>
@@ -529,7 +527,13 @@
       <option name="project" value="LOCAL" />
       <updated>1506054356158</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Se crean los metodos para consultar, insertar y actualizar informacion de los usuarios.">
+      <created>1506196571472</created>
+      <option name="number" value="00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1506196571472</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -600,7 +604,8 @@
     </option>
     <MESSAGE value="Se agrega la funcion getEjerciciobyid" />
     <MESSAGE value="Se modifica la funcion que extrae la informacion de los musculos" />
-    <option name="LAST_COMMIT_MESSAGE" value="Se modifica la funcion que extrae la informacion de los musculos" />
+    <MESSAGE value="Se crean los metodos para consultar, insertar y actualizar informacion de los usuarios." />
+    <option name="LAST_COMMIT_MESSAGE" value="Se crean los metodos para consultar, insertar y actualizar informacion de los usuarios." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -630,8 +635,8 @@
             <element signature="e#962#973#0" expanded="false" />
             <element signature="e#1567#2250#0" expanded="false" />
             <element signature="e#2256#2296#0" expanded="false" />
+            <element signature="e#2808#3512#0" expanded="false" />
             <element signature="e#3518#3529#0" expanded="false" />
-            <element signature="e#4062#4805#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -661,8 +666,8 @@
             <element signature="e#962#973#0" expanded="false" />
             <element signature="e#1567#2250#0" expanded="false" />
             <element signature="e#2256#2296#0" expanded="false" />
+            <element signature="e#2808#3512#0" expanded="false" />
             <element signature="e#3518#3529#0" expanded="false" />
-            <element signature="e#4062#4805#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -982,30 +987,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/app/models/users.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="901">
-          <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
-          <folding>
-            <element signature="e#198#304#0" expanded="false" />
-            <element signature="e#353#956#0" expanded="false" />
-            <element signature="e#962#973#0" expanded="false" />
-            <element signature="e#1567#2250#0" expanded="false" />
-            <element signature="e#2256#2296#0" expanded="false" />
-            <element signature="e#3518#3529#0" expanded="false" />
-            <element signature="e#4062#4805#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/server/controllers/UserController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1156">
-          <caret line="46" column="2" selection-start-line="46" selection-start-column="2" selection-end-line="46" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/server/controllers/EjercicioController.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.96" vertical-offset="261" max-vertical-offset="884">
@@ -1016,15 +997,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="1105">
-          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="1122">
+          <caret line="37" column="10" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/app/models/users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="557" max-vertical-offset="1513">
+          <caret line="176" column="13" selection-start-line="176" selection-start-column="13" selection-end-line="176" selection-end-column="13" />
+          <folding>
+            <element signature="e#198#304#0" expanded="false" />
+            <element signature="e#353#956#0" expanded="false" />
+            <element signature="e#962#973#0" expanded="false" />
+            <element signature="e#1567#2250#0" expanded="false" />
+            <element signature="e#2256#2296#0" expanded="false" />
+            <element signature="e#2808#3512#0" expanded="false" />
+            <element signature="e#3518#3529#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/server/controllers/UserController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="829" max-vertical-offset="1445">
+          <caret line="70" column="47" selection-start-line="70" selection-start-column="32" selection-end-line="70" selection-end-column="47" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/app/utils/constants.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22077923" vertical-offset="0" max-vertical-offset="850">
+        <state vertical-scroll-proportion="0.055194806" vertical-offset="102" max-vertical-offset="850">
           <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>

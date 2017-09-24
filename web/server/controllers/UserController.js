@@ -60,3 +60,20 @@ exports.getUserInfo = function (req, res) {
     });
 };
 
+
+exports.InsertUserSSLog = function (req) {
+    var idUser = req.query.idUser;
+    var begin = req.query.dtBegin;
+    var end = req.query.dtEnd;
+    console.log(begin);
+    console.log(idUser);
+    console.log(end);
+    jQuery.when(aws.DynamoUsers.InsertUserSSLog(docClient,idUser, begin, end)).done(function (resp) {
+        console.log("Insert session log succeeded" );
+    }).fail(function () {
+        console.log("Insert session log Failed: ");
+    });
+};
+
+
+

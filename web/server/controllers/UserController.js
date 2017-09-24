@@ -20,28 +20,36 @@ exports.getUser = function (req, res) {
     });
 };
 
-exports.InsertUserData = function (req) {
-    var idUser = req.query.idUser;
-    var username = req.query.username;
-    var points = req.query.points;
+exports.InsertUserData = function (req, res) {
+    var idUser = req.body.idUser;
+    var username = req.body.username;
+    var points = req.body.points;
     console.log(points);
     console.log(idUser);
     console.log(username);
     jQuery.when(aws.DynamoUsers.InsertUserData(docClient,idUser, username, points)).done(function (resp) {
+        res.status(200);
+        res.jsonp({"data": resp});
         console.log("Insert succeeded" );
     }).fail(function () {
+        res.status(204);
+        res.jsonp({"error": "mai_server_Insert_user"});
         console.log("Insert Failed: ");
     });
 };
 
-exports.UpdateUserPoints = function (req) {
-    var idUser = req.query.idUser;
-    var points = req.query.points;
+exports.UpdateUserPoints = function (req, res) {
+    var idUser = req.body.idUser;
+    var points = req.body.points;
     console.log(points);
     console.log(idUser);
     jQuery.when(aws.DynamoUsers.UpdateUserPoints(dynamodb,idUser, points)).done(function (resp) {
+        res.status(200);
+        res.jsonp({"data": resp});
         console.log("Update succeeded" );
     }).fail(function () {
+        res.status(204);
+        res.jsonp({"error": "mai_server_update_point"});
         console.log("Update Failed: ");
     });
 };

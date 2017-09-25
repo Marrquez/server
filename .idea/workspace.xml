@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="76133e9c-d644-4348-b0e2-b12fea2be4bb" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/server/controllers/UserController.js" afterPath="$PROJECT_DIR$/web/server/controllers/UserController.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/app/models/users.js" afterPath="$PROJECT_DIR$/web/app/models/users.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -74,12 +73,12 @@
       <file leaf-file-name="users.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/app/models/users.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1579" max-vertical-offset="3094">
-              <caret line="131" column="57" selection-start-line="131" selection-start-column="57" selection-end-line="131" selection-end-column="57" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="304" max-vertical-offset="3128">
+              <caret line="65" column="30" selection-start-line="65" selection-start-column="30" selection-end-line="65" selection-end-column="30" />
               <folding>
                 <element signature="e#198#304#0" expanded="false" />
                 <element signature="e#962#973#0" expanded="false" />
-                <element signature="e#5437#5448#0" expanded="false" />
+                <element signature="e#5518#5529#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -556,7 +555,13 @@
       <option name="project" value="LOCAL" />
       <updated>1506297614061</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Se agrega el manejo de la columna de fecha de la ultima sesion del usuario.">
+      <created>1506311434968</created>
+      <option name="number" value="00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1506311434968</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -586,6 +591,7 @@
     <frame x="1358" y="-8" width="1936" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2971246" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32919255" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14661273" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290735" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -601,7 +607,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32760364" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2971246" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -631,7 +636,8 @@
     <MESSAGE value="Se crea el metodo de insercion de log de sesiones por usuario" />
     <MESSAGE value="Se modifican los metodos de insercion y actualizacion" />
     <MESSAGE value="Se prueban los metodos de insercion y actualizacion, se actualizan los metodos post/put" />
-    <option name="LAST_COMMIT_MESSAGE" value="Se prueban los metodos de insercion y actualizacion, se actualizan los metodos post/put" />
+    <MESSAGE value="Se agrega el manejo de la columna de fecha de la ultima sesion del usuario." />
+    <option name="LAST_COMMIT_MESSAGE" value="Se agrega el manejo de la columna de fecha de la ultima sesion del usuario." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -657,7 +663,7 @@
           <folding>
             <element signature="e#198#304#0" expanded="false" />
             <element signature="e#962#973#0" expanded="false" />
-            <element signature="e#5437#5448#0" expanded="false" />
+            <element signature="e#5518#5529#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -684,7 +690,7 @@
           <folding>
             <element signature="e#198#304#0" expanded="false" />
             <element signature="e#962#973#0" expanded="false" />
-            <element signature="e#5437#5448#0" expanded="false" />
+            <element signature="e#5518#5529#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1022,12 +1028,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/app/models/users.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1579" max-vertical-offset="3094">
-          <caret line="131" column="57" selection-start-line="131" selection-start-column="57" selection-end-line="131" selection-end-column="57" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="304" max-vertical-offset="3128">
+          <caret line="65" column="30" selection-start-line="65" selection-start-column="30" selection-end-line="65" selection-end-column="30" />
           <folding>
             <element signature="e#198#304#0" expanded="false" />
             <element signature="e#962#973#0" expanded="false" />
-            <element signature="e#5437#5448#0" expanded="false" />
+            <element signature="e#5518#5529#0" expanded="false" />
           </folding>
         </state>
       </provider>

@@ -56,12 +56,14 @@ Users = function (dynamodb) {
             TableName : constants.DYN_USER_TABLE,
             Key:{"iUserId": {"S":idUser},
                 "vchUsername": {"S":Username},
-                "iPoints": {"N":Points}
+                "iPoints": {"N":Points},
+                "dtLastSession":{"S":"-"}
             },
             Item:{
                 'iUserId': idUser,
                 'vchUsername': Username,
-                'iPoints': Points
+                'iPoints': Points,
+                'dtLastSession': "-"
 
             }
         };

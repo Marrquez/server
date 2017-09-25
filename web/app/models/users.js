@@ -84,18 +84,20 @@ Users = function (dynamodb) {
     //</summary>
     //<remarks>
     //     <para><version>1.0.000</version><cambio>Creado</cambio><fecha>2017/09/23</fecha></para>
+    //     <para><version>1.1.000</version><cambio>Se agrega la columna dtLastSession</cambio><fecha>2017/09/24</fecha></para>
     //</remarks>
     //<param name="docClient">Identifica la conexion a la base de datos
     //<param name="idUser">Identifica el identificador del usuario</param>
     //<history>
     // Nestor Cepeda - 2017/09/21
+    // Nestor Cepeda - 2017/09/24
     //</history>
     this.getUserInfo = function(docClient, idUser){
         var defer = new jQuery.Deferred();
 
         var params = {
 
-            ProjectionExpression: ["iUserId","vchUsername","iPoints"],
+            ProjectionExpression: ["iUserId","vchUsername","iPoints","dtLastSession"],
             ExpressionAttributeNames:{
                 "#iUserId": "iUserId"
             },
@@ -122,21 +124,24 @@ Users = function (dynamodb) {
     //</summary>
     //<remarks>
     //     <para><version>1.0.000</version><cambio>Creado</cambio><fecha>2017/09/23</fecha></para>
+    //     <para><version>1.1.000</version><cambio>Se agrega la fecha de la ultima sesion</cambio><fecha>2017/09/24</fecha></para>
     //</remarks>
     //<param name="docClient">Identifica la conexion a la base de datos
     //<param name="idUser">identificador del usuario</param>
     //<param name="Points">puntaje a asignarle al usuario</param>
+    //<param name="lastSession">Fecha de la ultima sesion</param>
     //<history>
     // Nestor Cepeda - 2017/09/23
+    // Nestor Cepeda - 2017/09/24
     //</history>
-    this.UpdateUserPoints = function (docClient, idUser, Points){
+    this.UpdateUserPoints = function (docClient, idUser, Points,lastSession){
         var defer = new jQuery.Deferred();
 
         var params = {
             TableName : constants.DYN_USER_TABLE,
             Key:{"iUserId": {"S":idUser}},
-            UpdateExpression:"SET iPoints = :ipts",
-            ExpressionAttributeValues:{":ipts": {"N":Points}},
+            UpdateExpression:"SET iPoints = :ipts, dtLastSession = :dtlastSess",
+            ExpressionAttributeValues:{":ipts": {"N":Points},":dtlastSess": {"S":lastSession}},
             ReturnValues: "UPDATED_NEW"
         };
 
@@ -197,3 +202,4 @@ Users = function (dynamodb) {
 };
 
 module.exports = Users;
+

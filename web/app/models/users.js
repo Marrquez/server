@@ -54,6 +54,10 @@ Users = function (dynamodb) {
 
         var params = {
             TableName : constants.DYN_USER_TABLE,
+            Key:{"iUserId": {"S":idUser},
+                "vchUsername": {"S":Username},
+                "iPoints": {"N":Points}
+            },
             Item:{
                 'iUserId': idUser,
                 'vchUsername': Username,

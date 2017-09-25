@@ -69,16 +69,20 @@ exports.getUserInfo = function (req, res) {
 };
 
 
-exports.InsertUserSSLog = function (req) {
-    var idUser = req.query.idUser;
-    var begin = req.query.dtBegin;
-    var end = req.query.dtEnd;
+exports.InsertUserSSLog = function (req, res) {
+    var idUser = req.body.idUser;
+    var begin = req.body.dtBegin;
+    var end = req.body.dtEnd;
     console.log(begin);
     console.log(idUser);
     console.log(end);
     jQuery.when(aws.DynamoUsers.InsertUserSSLog(docClient,idUser, begin, end)).done(function (resp) {
+        res.status(200);
+        res.jsonp({"data": resp});
         console.log("Insert session log succeeded" );
     }).fail(function () {
+        res.status(204);
+        res.jsonp({"error": "mai_server_insert_session_user"});
         console.log("Insert session log Failed: ");
     });
 };

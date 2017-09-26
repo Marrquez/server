@@ -127,6 +127,8 @@ Users = function (dynamodb) {
     //<remarks>
     //     <para><version>1.0.000</version><cambio>Creado</cambio><fecha>2017/09/23</fecha></para>
     //     <para><version>1.1.000</version><cambio>Se agrega la fecha de la ultima sesion</cambio><fecha>2017/09/24</fecha></para>
+    //     <para><version>1.1.000</version><cambio>Se agrega la fecha de inicio y fin de la sesion para actualizarla en la
+    //         auditoria</cambio><fecha>2017/09/25</fecha></para>
     //</remarks>
     //<param name="docClient">Identifica la conexion a la base de datos
     //<param name="idUser">identificador del usuario</param>
@@ -135,19 +137,20 @@ Users = function (dynamodb) {
     //<history>
     // Nestor Cepeda - 2017/09/23
     // Nestor Cepeda - 2017/09/24
+    // Nestor Cepeda - 2017/09/25
     //</history>
-    this.UpdateUserPoints = function (docClient, idUser, Points,lastSession){
+    this.UpdateUserPoints = function (dynamodb, docClient, idUser, Points, dBegin, dEnd){
         var defer = new jQuery.Deferred();
 
         var params = {
             TableName : constants.DYN_USER_TABLE,
             Key:{"iUserId": {"S":idUser}},
             UpdateExpression:"SET iPoints = :ipts, dtLastSession = :dtlastSess",
-            ExpressionAttributeValues:{":ipts": {"N":Points},":dtlastSess": {"S":lastSession}},
+            ExpressionAttributeValues:{":ipts": {"N":Points},":dtlastSess": {"S":dEnd}},
             ReturnValues: "UPDATED_NEW"
         };
 
-        docClient.updateItem(params, function(err, data) {
+        dynamodb.updateItem(params, function(err, data) {
             if (err ) {
                 defer.reject();
                 console.log("Unable to update item. Error: ", JSON.stringify(err, null, 2));
@@ -156,6 +159,33 @@ Users = function (dynamodb) {
                 console.log("Updated item succeeded: ", JSON.stringify(data, null, 2));
             }
         });
+
+        //*****************************
+        var uuid = require('uuid');
+        uuid.v1();
+
+        var params1 = {
+            TableName : constants.DYN_USERSESSIONLOG_TABLE,
+            Item:{
+                "iUserSessionLog": uuid.v1(),
+                "iUserId": idUser,
+                'dtSessionBegin': dBegin,
+                'dtSessionEnd': dEnd
+
+            }
+        };
+
+        docClient.put(params1, function(err1, data1) {
+            if (err1 ) {
+                defer.reject();
+                console.log("Unable to insert item. Error: ", JSON.stringify(err1, null, 2));
+            } else {
+                defer.resolve();
+                console.log("Inserted item succeeded: ", JSON.stringify(data1, null, 2));
+            }
+        });
+
+        //*****************************
 
         return defer.promise();
     };
@@ -204,4 +234,7 @@ Users = function (dynamodb) {
 };
 
 module.exports = Users;
+
+
+
 

@@ -41,11 +41,14 @@ exports.InsertUserData = function (req, res) {
 exports.UpdateUserPoints = function (req, res) {
     var idUser = req.body.idUser;
     var points = req.body.points;
-    var lastSession = req.body.dtLastSession;
+    var dtBegin = req.body.dtBegin;
+    var dtEnd = req.body.dtEnd;
     console.log(points);
     console.log(idUser);
-    console.log(lastSession);
-    jQuery.when(aws.DynamoUsers.UpdateUserPoints(dynamodb,idUser, points, lastSession)).done(function (resp) {
+    console.log(dtBegin);
+    console.log(dtEnd);
+    //inserta los puntos del usuario
+    jQuery.when(aws.DynamoUsers.UpdateUserPoints(dynamodb, docClient, idUser, points,dtBegin,dtEnd)).done(function (resp) {
         res.status(200);
         res.jsonp({"data": resp});
         console.log("Update succeeded" );
@@ -54,6 +57,7 @@ exports.UpdateUserPoints = function (req, res) {
         res.jsonp({"error": "mai_server_update_point"});
         console.log("Update Failed: ");
     });
+
 };
 
 
@@ -88,6 +92,8 @@ exports.InsertUserSSLog = function (req, res) {
         console.log("Insert session log Failed: ");
     });
 };
+
+
 
 
 

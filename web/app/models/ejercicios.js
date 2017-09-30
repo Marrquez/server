@@ -68,6 +68,7 @@ Ejercicio = function (dynamodb) {
             },
             ExpressionAttributeValues: AttributeValues
         };
+        
 
 
         docClient.scan(params, function(err, data) {

@@ -37,6 +37,8 @@ app.post('/ins-userInfo', UserController.InsertUserData);
 app.put('/upd-userPoints', UserController.UpdateUserPoints);
 app.post('/ins-userSessioLog', UserController.InsertUserSSLog);
 app.put('/upd-userColumnData', UserController.UpdateUserDataColumn);
+app.put('/upd-userSize', UserController.UpdateUserSize);
+app.get('/get-stretchByMuscle', EjercicioController.getStretchingByMuscle);
 
 
 /*app.post('/quality/:params', QualityController.quality);

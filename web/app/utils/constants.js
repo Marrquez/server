@@ -30,6 +30,7 @@ module.exports = {
     DYN_EJERCICIOS_TABLE: 'ejercicios',
     DYN_USER_TABLE: 'T_User',
     DYN_USERSESSIONLOG_TABLE: 'T_UserSessionLog',
+    DYN_STRETCHING_TABLE: 'T_Stretching',
     DYN_CATALOG_TABLE: 'Catalog',
     DYN_MEDIA_TABLE: 'aws_node_demo_dynamo_media',
     DYN_EMAIL_TABLE: 'aws_node_demo_dynamo_emails',
@@ -42,3 +43,4 @@ module.exports = {
     S3_KEY: 's3_key',
     S3_DELETE: 's3_delete'
 };
+

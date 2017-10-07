@@ -282,6 +282,45 @@ Users = function (dynamodb) {
 
 
     };
+    //<summary>
+    // Metodo que actualiza el peso, la altura y el IMC de un usuario
+    //</summary>
+    //<remarks>
+    //     <para><version>1.0.000</version><cambio>Creado</cambio><fecha>2017/10/07</fecha></para>
+    //</remarks>
+    //<param name="docClient">Identifica la conexion a la base de datos
+    //<param name="idUser">identificador del usuario</param>
+    //<param name="weight">peso del usuario</param>
+    //<param name="height">altura del usuario</param>
+    //<param name="imc">indice de masa corporal</param>
+    //<history>
+    // Nestor Cepeda - 2017/10/07
+    //</history>
+    this.UpdateUserSize = function (dynamodb, idUser,weight ,height, imc){
+        var defer = new jQuery.Deferred();
+
+        var params = {
+            TableName : constants.DYN_USER_TABLE,
+            Key:{"iUserId": {"S":idUser}},
+            UpdateExpression:"SET iWeight = :iiweight, fHeight = :ffheight, iImc = :iiimc",
+            ExpressionAttributeValues:{":iiweight": {"N":weight},":ffheight": {"N":height},":iiimc": {"N":imc}},
+            ReturnValues: "UPDATED_NEW"
+        };
+
+        dynamodb.updateItem(params, function(err, data) {
+            if (err ) {
+                defer.reject();
+                console.log("Unable to update item. Error: ", JSON.stringify(err, null, 2));
+            } else {
+                defer.resolve();
+                console.log("Updated item succeeded: ", JSON.stringify(data, null, 2));
+            }
+        });
+
+        return defer.promise();
+    };
+
+
 
 };
 

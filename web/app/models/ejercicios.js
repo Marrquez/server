@@ -116,6 +116,65 @@ Ejercicio = function (dynamodb) {
         return defer.promise();
     };
     //**************************************
+
+    //<summary>
+    // Metodo que busca los ejecicios de estiramiento por el tipo de musculo
+    //</summary>
+    //<remarks>
+    //     <para><version>1.0.000</version><cambio>Creado</cambio><fecha>2017/10/07</fecha></para>
+    //</remarks>
+    //<param name="docClient">Identifica la conexion a la base de datos
+    //<param name="muscles">musculo de busqueda</param>
+    //<history>
+    // Nestor Cepeda - 2017/10/07
+    //</history>
+    this.getStretchingByMuscle = function(docClient, muscles){
+        var defer = new jQuery.Deferred();
+        var muscles = JSON.parse(muscles);
+        var filterExpression = "";
+        var ExpressionAttributeValues = '{ ';
+
+        for(var i = 0; i < muscles.length; i++){
+            if(i < muscles.length - 1){
+                filterExpression += "#vchMuscles = :m" + i + " OR ";
+                ExpressionAttributeValues += '":m' + i + '": "' + muscles[i] + '", ';
+            }else{
+                filterExpression += "#vchMuscles = :m" + i;
+                ExpressionAttributeValues += '":m' + i + '": "' + muscles[i] + '"';
+            }
+        }
+
+        ExpressionAttributeValues += "}";
+        var AttributeValues = JSON.parse(ExpressionAttributeValues);
+
+        var params = {
+            TableName : constants.DYN_STRETCHING_TABLE,
+            FilterExpression: filterExpression,
+            ProjectionExpression: ["vchMuscle","vchDescription","vchImage","vchStretchName"],
+            ExpressionAttributeNames:{
+                "#vchMuscles": "vchMuscle"
+            },
+            ExpressionAttributeValues: AttributeValues
+        };
+
+
+
+        docClient.scan(params, function(err, data) {
+            if (err) {
+                if(data && data.Items.length === 0){
+                    defer.resolve([]);
+                }else{
+                    defer.reject();
+                }
+            } else {
+                defer.resolve(data.Items);
+            }
+        });
+
+        return defer.promise();
+    };
+
+
 };
 
 module.exports = Ejercicio;

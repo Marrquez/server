@@ -33,6 +33,18 @@ exports.getEjercicesByMuscle = function (req, res) {
 };
 
 
+exports.getStretchingByMuscle = function (req, res) {
+    var muscles = req.query.muscles;
+    console.log(muscles);
+    jQuery.when(aws.DynamoEjercicios.getStretchingByMuscle(docClient, muscles)).done(function(resp){
+        res.status(200);
+        res.jsonp({"data": resp});
+    }).fail(function(){
+        res.status(204);
+        res.jsonp({"error": "mai_server_loggin_locked_user"});
+    });
+};
+
 exports.getEjerciciobyId = function (req, res) {
     var id = req.query.id;
     console.log(id);

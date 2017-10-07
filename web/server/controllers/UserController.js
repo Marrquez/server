@@ -121,6 +121,28 @@ exports.UpdateUserDataColumn = function (req, res) {
 
 };
 
+exports.UpdateUserSize = function (req, res) {
+    var idUser = req.body.idUser;
+    var Weight = req.body.weight;
+    var Height = req.body.height;
+    var Imc = req.body.imc;
+    console.log(Weight);
+    console.log(idUser);
+    console.log(Height);
+    console.log(Imc);
+    //se actualiza la talla del usuario
+    jQuery.when(aws.DynamoUsers.UpdateUserSize(dynamodb, idUser, Weight,Height,Imc)).done(function (resp) {
+        res.status(200);
+        res.jsonp({"data": resp});
+        console.log("Update succeeded" );
+    }).fail(function () {
+        res.status(204);
+        res.jsonp({"error": "mai_server_update_point"});
+        console.log("Update Failed: ");
+    });
+
+};
+
 
 
 

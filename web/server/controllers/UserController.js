@@ -24,10 +24,20 @@ exports.InsertUserData = function (req, res) {
     var idUser = req.body.idUser;
     var username = req.body.username;
     var points = req.body.points;
+    var height = req.body.height;
+    var weight = req.body.weight;
+    var session = req.body.session;
+    var imc = req.body.imc;
+
     console.log(points);
     console.log(idUser);
     console.log(username);
-    jQuery.when(aws.DynamoUsers.InsertUserData(docClient,idUser, username, points)).done(function (resp) {
+    console.log(height);
+    console.log(weight);
+    console.log(session);
+    console.log(imc);
+
+    jQuery.when(aws.DynamoUsers.InsertUserData(docClient,idUser, username, points,height,weight,session,imc)).done(function (resp) {
         res.status(200);
         res.jsonp({"data": resp});
         console.log("Insert succeeded" );
@@ -60,8 +70,6 @@ exports.UpdateUserPoints = function (req, res) {
 
 };
 
-
-
 exports.getUserInfo = function (req, res) {
     var iUserId = req.query.idUser;
     console.log(iUserId);
@@ -73,7 +81,6 @@ exports.getUserInfo = function (req, res) {
         res.jsonp({"error": "mai_server_loggin_locked_user"});
     });
 };
-
 
 exports.InsertUserSSLog = function (req, res) {
     var idUser = req.body.idUser;
@@ -93,7 +100,26 @@ exports.InsertUserSSLog = function (req, res) {
     });
 };
 
+exports.UpdateUserDataColumn = function (req, res) {
+    var idUser = req.body.idUser;
+    var column = req.body.vColumn;
+    var info = req.body.dInfo;
 
+    console.log(idUser);
+    console.log(column);
+    console.log(info);
+    //actualizar la informacion de la columna correspondiente
+    jQuery.when(aws.DynamoUsers.UpdateUserDataColumn(dynamodb,idUser, column,info)).done(function (resp) {
+        res.status(200);
+        res.jsonp({"data": resp});
+        console.log("Update succeeded" );
+    }).fail(function () {
+        res.status(204);
+        res.jsonp({"error": "mai_server_update_point"});
+        console.log("Update Failed: ");
+    });
+
+};
 
 
 

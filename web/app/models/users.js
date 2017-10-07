@@ -41,6 +41,7 @@ Users = function (dynamodb) {
     //</summary>
     //<remarks>
     //     <para><version>1.0.000</version><cambio>Creado</cambio><fecha>2017/09/21</fecha></para>
+    //     <para><version>1.1.000</version><cambio>se agregan las columnas de peso, altura, session e indice de masa corporal</cambio><fecha>2017/10/06</fecha></para>
     //</remarks>
     //<param name="docClient">Identifica la conexion a la base de datos
     //<param name="idUser">identificador del usuario</param>
@@ -48,8 +49,9 @@ Users = function (dynamodb) {
     //<param name="Points">puntaje a asignarle al usuario</param>
     //<history>
     // Nestor Cepeda - 2017/09/21
+    // Nestor Cepeda - 2017/10/06
     //</history>
-    this.InsertUserData = function (docClient, idUser, Username, Points){
+    this.InsertUserData = function (docClient, idUser, Username, Points,Height,Weight,Session,Imc){
         var defer = new jQuery.Deferred();
 
         var params = {
@@ -57,14 +59,21 @@ Users = function (dynamodb) {
             Key:{"iUserId": {"S":idUser},
                 "vchUsername": {"S":Username},
                 "iPoints": {"N":Points},
-                "dtLastSession":{"S":"-"}
+                "dtLastSession":{"S":"-"},
+                "fHeight":{"N":Height},
+                "iWeight":{"N":Weight},
+                "vchSession":{"S":Session},
+                "iImc":{"N":Imc}
             },
             Item:{
                 'iUserId': idUser,
                 'vchUsername': Username,
                 'iPoints': Points,
-                'dtLastSession': "-"
-
+                'dtLastSession': "-",
+                "fHeight":Height,
+                "iWeight":Weight,
+                "vchSession":Session,
+                "iImc":Imc
             }
         };
 
@@ -87,19 +96,21 @@ Users = function (dynamodb) {
     //<remarks>
     //     <para><version>1.0.000</version><cambio>Creado</cambio><fecha>2017/09/23</fecha></para>
     //     <para><version>1.1.000</version><cambio>Se agrega la columna dtLastSession</cambio><fecha>2017/09/24</fecha></para>
+    //     <para><version>1.2.000</version><cambio>Se agrega la columna vchsession, fHeight, iWeight</cambio><fecha>2017/10/04</fecha></para>
     //</remarks>
     //<param name="docClient">Identifica la conexion a la base de datos
     //<param name="idUser">Identifica el identificador del usuario</param>
     //<history>
     // Nestor Cepeda - 2017/09/21
     // Nestor Cepeda - 2017/09/24
+    // Nestor Cepeda - 2017/10/04
     //</history>
     this.getUserInfo = function(docClient, idUser){
         var defer = new jQuery.Deferred();
 
         var params = {
 
-            ProjectionExpression: ["iUserId","vchUsername","iPoints","dtLastSession"],
+            ProjectionExpression: ["iUserId","vchUsername","iPoints","dtLastSession","vchSession","fHeight","iWeight","iIMC"],
             ExpressionAttributeNames:{
                 "#iUserId": "iUserId"
             },
@@ -230,10 +241,53 @@ Users = function (dynamodb) {
 
         return defer.promise();
     };
+    //<summary>
+    // Metodo que inserta un dato en la columna determinada de la tabla de usuario
+    //</summary>
+    //<remarks>
+    //     <para><version>1.0.000</version><cambio>Creado</cambio><fecha>2017/10/04</fecha></para>
+    //</remarks>
+    //<param name="docClient">Identifica la conexion a la base de datos
+    //<param name="idUser">identificador del usuario</param>
+    //<param name="vchColumn">Nombre de la columna a actualizar</param>
+    //<param name="vchData">Valor del dato</param>
+    //<history>
+    // Nestor Cepeda - 2017/10/04
+    //</history>
+    this.UpdateUserDataColumn = function (dynamodb, idUser, vchColumn, vchData){
+
+        var defer = new jQuery.Deferred();
+
+        var params = {
+            TableName : constants.DYN_USER_TABLE,
+            Key:{"iUserId": {"S":idUser}},
+            //UpdateExpression:"SET vchSession = :vSession",
+
+            UpdateExpression:"SET " + vchColumn + " = :vSession",
+            ExpressionAttributeValues:{":vSession": {"S":vchData}},
+            ReturnValues: "UPDATED_NEW"
+        };
+
+        dynamodb.updateItem(params, function(err, data) {
+            if (err ) {
+                defer.reject();
+                console.log("Unable to update item. Error: ", JSON.stringify(err, null, 2));
+            } else {
+                defer.resolve();
+                console.log("Updated item succeeded: ", JSON.stringify(data, null, 2));
+            }
+        });
+
+        return defer.promise();
+
+
+    };
 
 };
 
 module.exports = Users;
+
+
 
 
 

@@ -36,6 +36,7 @@ app.get('/get-userInfo', UserController.getUserInfo);
 app.post('/ins-userInfo', UserController.InsertUserData);
 app.put('/upd-userPoints', UserController.UpdateUserPoints);
 app.post('/ins-userSessioLog', UserController.InsertUserSSLog);
+app.put('/upd-userColumnData', UserController.UpdateUserDataColumn);
 
 
 /*app.post('/quality/:params', QualityController.quality);

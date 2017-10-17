@@ -110,7 +110,7 @@ Users = function (dynamodb) {
 
         var params = {
 
-            ProjectionExpression: ["iUserId","vchUsername","iPoints","dtLastSession","vchSession","fHeight","iWeight","iIMC"],
+            ProjectionExpression: ["iUserId","vchUsername","iPoints","dtLastSession","vchSession","fHeight","iWeight","iImc"],
             ExpressionAttributeNames:{
                 "#iUserId": "iUserId"
             },
@@ -316,6 +316,7 @@ Users = function (dynamodb) {
                 console.log("Updated item succeeded: ", JSON.stringify(data, null, 2));
             }
         });
+
 
         return defer.promise();
     };

@@ -17,6 +17,7 @@ module.exports = {
     DYN_DELETE_USER: 'dynamo_delete_user',
     DYN_DELETE_MEDIA: 'dynamo_delete_media',
 
+
     // ses emails
     DYN_GET_EMAIL: 'dynamo_get_email',
     DYN_UPDATE_EMAIL: 'dynamo_update_email',

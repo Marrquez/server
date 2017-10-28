@@ -175,6 +175,128 @@ Ejercicio = function (dynamodb) {
     };
 
 
+    //<summary>
+    // Metodo que busca los ejecicios de calentamiento por lugar
+    //</summary>
+    //<remarks>
+    //     <para><version>1.0.000</version><cambio>Creado</cambio><fecha>2017/10/27</fecha></para>
+    //</remarks>
+    //<param name="docClient">Identifica la conexion a la base de datos
+    //<param name="place">lugar de busqueda</param>
+    //<history>
+    // Nestor Cepeda - 2017/10/27
+    //</history>
+    this.getWarmUpByPlace = function(docClient, place){
+        var defer = new jQuery.Deferred();
+
+        var params = {
+            TableName : constants.DYN_WARMUP_TABLE,
+            ProjectionExpression: ["iWarmupId","iDuration","imgGif","imgImage","vchCorporalZone","vchDescription","vchIntensity","vchName","vchTrainingPlace","vchTrainingType"],
+            FilterExpression: "#vchTrainingPlace = :place",
+            ExpressionAttributeNames:{
+                "#vchTrainingPlace": "vchTrainingPlace"
+            },
+            ExpressionAttributeValues: {
+                ":place": place
+            }
+        };
+
+        docClient.scan(params, function(err, data) {
+            if (err || data.Items.length === 0) {
+                defer.reject();
+            } else {
+                defer.resolve(data.Items[0]);
+            }
+        });
+
+        return defer.promise();
+    };
+
+    //<summary>
+    // Metodo que busca los ejecicios de calentamiento por lugar y tipo de entrenamiento
+    //</summary>
+    //<remarks>
+    //     <para><version>1.0.000</version><cambio>Creado</cambio><fecha>2017/10/27</fecha></para>
+    //</remarks>
+    //<param name="docClient">Identifica la conexion a la base de datos
+    //<param name="place">lugar de busqueda</param>
+    //<param name="trainingtype">Tipo de entrenamiento</param>
+    //<history>
+    // Nestor Cepeda - 2017/10/27
+    //</history>
+    this.getWarmUpByPlaceType = function(docClient, place,trainingtype){
+        var defer = new jQuery.Deferred();
+
+        var params = {
+            TableName : constants.DYN_WARMUP_TABLE,
+            ProjectionExpression: ["iWarmupId","iDuration","imgGif","imgImage","vchCorporalZone","vchDescription","vchIntensity","vchName","vchTrainingPlace","vchTrainingType"],
+            FilterExpression: "#vchTrainingPlace = :place AND #vchTrainingType = :trainingtype",
+            ExpressionAttributeNames:{
+                "#vchTrainingPlace": "vchTrainingPlace",
+                "#vchTrainingType": "vchTrainingType"
+            },
+            ExpressionAttributeValues: {
+                ":place": place,
+                ":trainingtype": trainingtype
+
+            }
+        };
+
+        docClient.scan(params, function(err, data) {
+            if (err || data.Items.length === 0) {
+                defer.reject();
+            } else {
+                defer.resolve(data.Items[0]);
+            }
+        });
+
+        return defer.promise();
+    };
+
+    //<summary>
+    // Metodo que busca los ejecicios de calentamiento por lugar y tipo de entrenamiento
+    //</summary>
+    //<remarks>
+    //     <para><version>1.0.000</version><cambio>Creado</cambio><fecha>2017/10/27</fecha></para>
+    //</remarks>
+    //<param name="docClient">Identifica la conexion a la base de datos
+    //<param name="place">lugar de busqueda</param>
+    //<param name="trainingtype">Tipo de entrenamiento</param>
+    //<param name="corporalZone">zona corporal</param>
+    //<history>
+    // Nestor Cepeda - 2017/10/27
+    //</history>
+    this.getWarmUpByPlaceTypeZone = function(docClient, place,trainingtype,corporalZone){
+        var defer = new jQuery.Deferred();
+
+        var params = {
+            TableName : constants.DYN_WARMUP_TABLE,
+            ProjectionExpression: ["iWarmupId","iDuration","imgGif","imgImage","vchCorporalZone","vchDescription","vchIntensity","vchName","vchTrainingPlace","vchTrainingType"],
+            FilterExpression: "#vchTrainingPlace = :place AND #vchTrainingType = :trainingtype AND #vchCorporalZone = :corporalZone",
+            ExpressionAttributeNames:{
+                "#vchTrainingPlace": "vchTrainingPlace",
+                "#vchTrainingType": "vchTrainingType",
+                "#vchCorporalZone": "vchCorporalZone"
+
+            },
+            ExpressionAttributeValues: {
+                ":place": place,
+                ":trainingtype": trainingtype,
+                ":corporalZone": corporalZone
+            }
+        };
+
+        docClient.scan(params, function(err, data) {
+            if (err || data.Items.length === 0) {
+                defer.reject();
+            } else {
+                defer.resolve(data.Items[0]);
+            }
+        });
+
+        return defer.promise();
+    };
+
 };
 
 module.exports = Ejercicio;

@@ -39,6 +39,10 @@ app.post('/ins-userSessioLog', UserController.InsertUserSSLog);
 app.put('/upd-userColumnData', UserController.UpdateUserDataColumn);
 app.put('/upd-userSize', UserController.UpdateUserSize);
 app.get('/get-stretchByMuscle', EjercicioController.getStretchingByMuscle);
+app.get('/get-warmUpByPlace', EjercicioController.getWarmUpByPlace);
+app.get('/get-warmUpByPlaceType', EjercicioController.getWarmUpByPlaceType);
+app.get('/get-warmUpByPlaceTypeZone', EjercicioController.getWarmUpByPlaceTypeZone);
+//app.get('/get-warmUp', EjercicioController.getWarmUpByPlace);
 
 
 /*app.post('/quality/:params', QualityController.quality);

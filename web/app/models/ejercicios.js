@@ -191,7 +191,7 @@ Ejercicio = function (dynamodb) {
 
         var params = {
             TableName : constants.DYN_WARMUP_TABLE,
-            ProjectionExpression: ["iWarmupId","iDuration","imgGif","imgImage","vchCorporalZone","vchDescription","vchIntensity","vchName","vchTrainingPlace","vchTrainingType"],
+            ProjectionExpression: ["iWarmupId","iDuration","imgGif","imgImage","vchCorporalZone","vchDescription","vchIntensity","vchName","vchTrainingPlace","vchTrainingType","iRepetition","vchTimeUnit"],
             FilterExpression: "#vchTrainingPlace = :place",
             ExpressionAttributeNames:{
                 "#vchTrainingPlace": "vchTrainingPlace"
@@ -229,7 +229,7 @@ Ejercicio = function (dynamodb) {
 
         var params = {
             TableName : constants.DYN_WARMUP_TABLE,
-            ProjectionExpression: ["iWarmupId","iDuration","imgGif","imgImage","vchCorporalZone","vchDescription","vchIntensity","vchName","vchTrainingPlace","vchTrainingType"],
+            ProjectionExpression: ["iWarmupId","iDuration","imgGif","imgImage","vchCorporalZone","vchDescription","vchIntensity","vchName","vchTrainingPlace","vchTrainingType","iRepetition","vchTimeUnit"],
             FilterExpression: "#vchTrainingPlace = :place AND #vchTrainingType = :trainingtype",
             ExpressionAttributeNames:{
                 "#vchTrainingPlace": "vchTrainingPlace",
@@ -271,7 +271,7 @@ Ejercicio = function (dynamodb) {
 
         var params = {
             TableName : constants.DYN_WARMUP_TABLE,
-            ProjectionExpression: ["iWarmupId","iDuration","imgGif","imgImage","vchCorporalZone","vchDescription","vchIntensity","vchName","vchTrainingPlace","vchTrainingType"],
+            ProjectionExpression: ["iWarmupId","iDuration","imgGif","imgImage","vchCorporalZone","vchDescription","vchIntensity","vchName","vchTrainingPlace","vchTrainingType","iRepetition","vchTimeUnit"],
             FilterExpression: "#vchTrainingPlace = :place AND #vchTrainingType = :trainingtype AND #vchCorporalZone = :corporalZone",
             ExpressionAttributeNames:{
                 "#vchTrainingPlace": "vchTrainingPlace",

@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="76133e9c-d644-4348-b0e2-b12fea2be4bb" name="Default" comment="Creacion de los endpoint de actualizacion de la talla del usuario y consulta de los ejercicios de estiramiento.">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/server/controllers/EjercicioController.js" afterPath="$PROJECT_DIR$/web/server/controllers/EjercicioController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/app/utils/constants.js" afterPath="$PROJECT_DIR$/web/app/utils/constants.js" />
+    <list default="true" id="76133e9c-d644-4348-b0e2-b12fea2be4bb" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/app/models/ejercicios.js" afterPath="$PROJECT_DIR$/web/app/models/ejercicios.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/server.js" afterPath="$PROJECT_DIR$/web/server.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="gualdo.iws" />
@@ -46,7 +43,7 @@
       <file leaf-file-name="EjercicioController.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/server/controllers/EjercicioController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="556" max-vertical-offset="1309">
+            <state vertical-scroll-proportion="0.0" vertical-offset="367" max-vertical-offset="1309">
               <caret line="87" column="32" selection-start-line="87" selection-start-column="32" selection-end-line="87" selection-end-column="32" />
               <folding>
                 <element signature="e#639#985#0" expanded="false" />
@@ -57,20 +54,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ejercicios.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ejercicios.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/app/models/ejercicios.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.333333" vertical-offset="1318" max-vertical-offset="2363">
-              <caret line="287" column="0" selection-start-line="287" selection-start-column="0" selection-end-line="287" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.36836517" vertical-offset="2288" max-vertical-offset="3230">
+              <caret line="273" column="203" selection-start-line="273" selection-start-column="203" selection-end-line="273" selection-end-column="203" />
               <folding>
                 <element signature="e#202#308#0" expanded="false" />
                 <element signature="e#356#966#0" expanded="false" />
                 <element signature="e#2767#3469#0" expanded="false" />
                 <element signature="e#3521#3532#0" expanded="false" />
                 <element signature="e#4015#5489#0" expanded="false" />
-                <element signature="e#5968#6802#0" expanded="false" />
-                <element signature="e#6809#6820#0" expanded="false" />
-                <element signature="e#7384#8358#0" expanded="false" />
+                <element signature="e#6837#6848#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -134,17 +129,17 @@
       <file leaf-file-name="config.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/app/awsconfig/config.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="408">
+            <state vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="408">
               <caret line="11" column="17" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="constants.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="constants.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/app/utils/constants.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.32553193" vertical-offset="0" max-vertical-offset="940">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="901">
               <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
               <folding />
             </state>
@@ -179,8 +174,8 @@
         <option value="$PROJECT_DIR$/web/app/models/users.js" />
         <option value="$PROJECT_DIR$/web/server.js" />
         <option value="$PROJECT_DIR$/web/server/controllers/EjercicioController.js" />
-        <option value="$PROJECT_DIR$/web/app/models/ejercicios.js" />
         <option value="$PROJECT_DIR$/web/app/utils/constants.js" />
+        <option value="$PROJECT_DIR$/web/app/models/ejercicios.js" />
       </list>
     </option>
   </component>
@@ -394,10 +389,14 @@
       <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
       <method />
     </configuration>
+    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
+      <method />
+    </configuration>
     <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
       <method />
     </configuration>
-    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
@@ -405,10 +404,6 @@
       <setting name="settingsFile" value="" />
       <setting name="serverType" value="INTERNAL" />
       <setting name="preferredDebugBrowser" value="Chrome" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
-      <envs />
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
@@ -656,7 +651,13 @@
       <option name="project" value="LOCAL" />
       <updated>1508207952767</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Creacion de los endpoint para consultar los calentamientos">
+      <created>1509160368635</created>
+      <option name="number" value="00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1509160368635</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -692,19 +693,19 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12848867" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3898129" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21170212" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32760364" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32760364" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3898129" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2971246" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -736,7 +737,8 @@
     <MESSAGE value="actualizacion extraccion informacion de ejercicio por musculo" />
     <MESSAGE value="Creacion de endpoint para manejo de informacion de datos en la tabla T_User" />
     <MESSAGE value="Creacion de los endpoint de actualizacion de la talla del usuario y consulta de los ejercicios de estiramiento." />
-    <option name="LAST_COMMIT_MESSAGE" value="Creacion de los endpoint de actualizacion de la talla del usuario y consulta de los ejercicios de estiramiento." />
+    <MESSAGE value="Creacion de los endpoint para consultar los calentamientos" />
+    <option name="LAST_COMMIT_MESSAGE" value="Creacion de los endpoint para consultar los calentamientos" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1118,32 +1120,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/app/models/users.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="697">
-          <caret line="328" column="0" selection-start-line="328" selection-start-column="0" selection-end-line="328" selection-end-column="0" />
-          <folding>
-            <element signature="e#198#304#0" expanded="false" />
-            <element signature="e#353#956#0" expanded="false" />
-            <element signature="e#962#973#0" expanded="false" />
-            <element signature="e#1794#2993#0" expanded="false" />
-            <element signature="e#2999#3039#0" expanded="false" />
-            <element signature="e#3888#4648#0" expanded="false" />
-            <element signature="e#4654#4665#0" expanded="false" />
-            <element signature="e#5676#7277#0" expanded="false" />
-            <element signature="e#6140#6280#0" expanded="false" />
-            <element signature="e#6286#6422#0" expanded="false" />
-            <element signature="e#6875#7195#0" expanded="false" />
-            <element signature="e#7283#7294#0" expanded="false" />
-            <element signature="e#7896#8694#0" expanded="false" />
-            <element signature="e#8700#8711#0" expanded="false" />
-            <element signature="e#9346#10172#0" expanded="false" />
-            <element signature="e#10178#10189#0" expanded="false" />
-            <element signature="e#10844#11677#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/app/awsconfig/config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="408">
@@ -1175,6 +1151,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/web/app/utils/constants.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="901">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/app/models/users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="697">
+          <caret line="328" column="0" selection-start-line="328" selection-start-column="0" selection-end-line="328" selection-end-column="0" />
+          <folding>
+            <element signature="e#198#304#0" expanded="false" />
+            <element signature="e#353#956#0" expanded="false" />
+            <element signature="e#962#973#0" expanded="false" />
+            <element signature="e#1794#2993#0" expanded="false" />
+            <element signature="e#2999#3039#0" expanded="false" />
+            <element signature="e#3888#4648#0" expanded="false" />
+            <element signature="e#4654#4665#0" expanded="false" />
+            <element signature="e#5676#7277#0" expanded="false" />
+            <element signature="e#6140#6280#0" expanded="false" />
+            <element signature="e#6286#6422#0" expanded="false" />
+            <element signature="e#6875#7195#0" expanded="false" />
+            <element signature="e#7283#7294#0" expanded="false" />
+            <element signature="e#7896#8694#0" expanded="false" />
+            <element signature="e#8700#8711#0" expanded="false" />
+            <element signature="e#9346#10172#0" expanded="false" />
+            <element signature="e#10178#10189#0" expanded="false" />
+            <element signature="e#10844#11677#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/web/server/controllers/EjercicioController.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="556" max-vertical-offset="1309">
@@ -1189,26 +1199,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/app/models/ejercicios.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.333333" vertical-offset="1318" max-vertical-offset="2363">
-          <caret line="287" column="0" selection-start-line="287" selection-start-column="0" selection-end-line="287" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.36836517" vertical-offset="2288" max-vertical-offset="3230">
+          <caret line="273" column="203" selection-start-line="273" selection-start-column="203" selection-end-line="273" selection-end-column="203" />
           <folding>
             <element signature="e#202#308#0" expanded="false" />
             <element signature="e#356#966#0" expanded="false" />
             <element signature="e#2767#3469#0" expanded="false" />
             <element signature="e#3521#3532#0" expanded="false" />
             <element signature="e#4015#5489#0" expanded="false" />
-            <element signature="e#5968#6802#0" expanded="false" />
-            <element signature="e#6809#6820#0" expanded="false" />
-            <element signature="e#7384#8358#0" expanded="false" />
+            <element signature="e#6837#6848#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/app/utils/constants.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32553193" vertical-offset="0" max-vertical-offset="940">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>

@@ -217,40 +217,66 @@ Ejercicio = function (dynamodb) {
     //</summary>
     //<remarks>
     //     <para><version>1.0.000</version><cambio>Creado</cambio><fecha>2017/10/27</fecha></para>
+    //     <para><version>1.1.000</version><cambio>Modificado</cambio><fecha>2017/11/06</fecha></para>
     //</remarks>
     //<param name="docClient">Identifica la conexion a la base de datos
     //<param name="place">lugar de busqueda</param>
     //<param name="trainingtype">Tipo de entrenamiento</param>
+    //<param name="warnup">boolean para determinar si incluye calentamiento</param>
     //<history>
     // Nestor Cepeda - 2017/10/27
+    // Nestor Cepeda - 2017/11/06
     //</history>
     this.getWarmUpByPlaceType = function(docClient, place,trainingtype){
+
         var defer = new jQuery.Deferred();
+        var mType = JSON.parse(trainingtype);
+        var filterExpression = "(";
+        var ExpressionAttributeValues = '{ ';
+
+        for(var i = 0; i < mType.length; i++){
+            if(i < mType.length - 1){
+                filterExpression += "#vchTrainingType = :m" + i + " OR ";
+                ExpressionAttributeValues += '":m' + i + '": "' + mType[i] + '", ';
+            }else{
+                filterExpression += "#vchTrainingType = :m" + i;
+                ExpressionAttributeValues += '":m' + i + '": "' + mType[i] + '"';
+            }
+        }
+
+
+        ExpressionAttributeValues += ',":place": "' + place + '"' ;
+        ExpressionAttributeValues += "}";
+        filterExpression += ") AND (#vchTrainingPlace = :place)";
+        var AttributeValues = JSON.parse(ExpressionAttributeValues);
 
         var params = {
             TableName : constants.DYN_WARMUP_TABLE,
-            ProjectionExpression: ["iWarmupId","iDuration","imgGif","imgImage","vchCorporalZone","vchDescription","vchIntensity","vchName","vchTrainingPlace","vchTrainingType","iRepetition","vchTimeUnit","vchLevel"],
-            FilterExpression: "#vchTrainingPlace = :place AND #vchTrainingType = :trainingtype",
+            FilterExpression: filterExpression,
+            ProjectionExpression: ["iWarmupId", "iDuration", "imgGif", "imgImage", "vchCorporalZone", "vchDescription", "vchIntensity", "vchName", "vchTrainingPlace", "vchTrainingType", "iRepetition", "vchTimeUnit", "vchLevel"],
             ExpressionAttributeNames:{
-                "#vchTrainingPlace": "vchTrainingPlace",
-                "#vchTrainingType": "vchTrainingType"
+                "#vchTrainingType": "vchTrainingType",
+                "#vchTrainingPlace": "vchTrainingPlace"
             },
-            ExpressionAttributeValues: {
-                ":place": place,
-                ":trainingtype": trainingtype
-
-            }
+            ExpressionAttributeValues: AttributeValues
         };
 
+
+
         docClient.scan(params, function(err, data) {
-            if (err || data.Items.length === 0) {
-                defer.reject();
+            if (err) {
+                if(data && data.Items.length === 0){
+                    defer.resolve([]);
+                }else{
+                    defer.reject();
+                }
             } else {
-                defer.resolve(data.Items[0]);
+                defer.resolve(data.Items);
             }
         });
 
         return defer.promise();
+
     };
 
     //<summary>

@@ -298,6 +298,7 @@ Ejercicio = function (dynamodb) {
         var params = {
             TableName : constants.DYN_WARMUP_TABLE,
             ProjectionExpression: ["iWarmupId","iDuration","imgGif","imgImage","vchCorporalZone","vchDescription","vchIntensity","vchName","vchTrainingPlace","vchTrainingType","iRepetition","vchTimeUnit","vchLevel"],
+            //FilterExpression: "#vchTrainingPlace = :place AND #vchTrainingType = :trainingtype AND #vchCorporalZone = :corporalZone",
             FilterExpression: "#vchTrainingPlace = :place AND #vchTrainingType = :trainingtype AND #vchCorporalZone = :corporalZone",
             ExpressionAttributeNames:{
                 "#vchTrainingPlace": "vchTrainingPlace",
@@ -313,10 +314,14 @@ Ejercicio = function (dynamodb) {
         };
 
         docClient.scan(params, function(err, data) {
-            if (err || data.Items.length === 0) {
-                defer.reject();
+            if (err) {
+                if(data && data.Items.length === 0){
+                    defer.resolve([]);
+                }else{
+                    defer.reject();
+                }
             } else {
-                defer.resolve(data.Items[0]);
+                defer.resolve(data.Items);
             }
         });
 

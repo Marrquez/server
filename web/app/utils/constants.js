@@ -21,8 +21,7 @@ module.exports = {
     DYN_GET_EMAIL: 'dynamo_get_email',
     DYN_UPDATE_EMAIL: 'dynamo_update_email',
     DYN_UNSUBSCRIBE_EMAIL: 'dynamo_unsubscribe_email',
-    AK: "AKIAJVVE7TEZ2QVR4JEA",
-    SAK:"a29vEbW4R9vg2STCVWIzDu2VsDuBNVtL0HjeaZwP",
+
 
     SES_SEND_EMAIL: 'ses_send_email',
     MAX_EMAILS_ALLOWED: 3,

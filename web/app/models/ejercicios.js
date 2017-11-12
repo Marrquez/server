@@ -90,20 +90,35 @@ Ejercicio = function (dynamodb) {
     *   Busqueda de ejercicio por id
     */
     //**************************************
-    this.getEjerciciobyId = function(docClient, id){
+    this.getEjerciciobyId = function(docClient, id,place){
         var defer = new jQuery.Deferred();
+        if(place=="1") {
+            var params = {
+                TableName: constants.DYN_EJERCICIOS_TABLE,
+                ProjectionExpression: ["imagen", "nombre", "descripcion", "series", "repeticiones"],
+                FilterExpression: "#id = :id",
+                ExpressionAttributeNames: {
+                    "#id": "id"
+                },
+                ExpressionAttributeValues: {
+                    ":id": id
+                }
+            };
+        }
 
-        var params = {
-            TableName : constants.DYN_EJERCICIOS_TABLE,
-            ProjectionExpression: ["imagen","nombre","descripcion","series","repeticiones"],
-            FilterExpression: "#id = :id",
-            ExpressionAttributeNames:{
-                "#id": "id"
-            },
-            ExpressionAttributeValues: {
-                ":id": id
-            }
-        };
+        if(place=="0") {
+            var params = {
+                TableName: constants.DYN_WARMUP_TABLE,
+                ProjectionExpression: ["iWarmupId","iDuration","imgGif","imgImage","vchCorporalZone","vchDescription","vchIntensity","vchName","vchTrainingPlace","vchTrainingType","iRepetition","vchTimeUnit","vchLevel"],
+                FilterExpression: "#iWarmupId = :id",
+                ExpressionAttributeNames: {
+                    "#iWarmupId": "iWarmupId"
+                },
+                ExpressionAttributeValues: {
+                    ":id": id
+                }
+            };
+        }
 
         docClient.scan(params, function(err, data) {
             if (err || data.Items.length === 0) {
@@ -202,14 +217,19 @@ Ejercicio = function (dynamodb) {
         };
 
         docClient.scan(params, function(err, data) {
-            if (err || data.Items.length === 0) {
-                defer.reject();
+            if (err) {
+                if(data && data.Items.length === 0){
+                    defer.resolve([]);
+                }else{
+                    defer.reject();
+                }
             } else {
-                defer.resolve(data.Items[0]);
+                defer.resolve(data.Items);
             }
         });
 
         return defer.promise();
+
     };
 
     //<summary>
@@ -293,24 +313,37 @@ Ejercicio = function (dynamodb) {
     // Nestor Cepeda - 2017/10/27
     //</history>
     this.getWarmUpByPlaceTypeZone = function(docClient, place,trainingtype,corporalZone){
+
         var defer = new jQuery.Deferred();
+        var mType = JSON.parse(trainingtype);
+        var filterExpression = "(";
+        var ExpressionAttributeValues = '{ ';
+
+        for(var i = 0; i < mType.length; i++){
+            if(i < mType.length - 1){
+                filterExpression += "#vchTrainingType = :m" + i + " OR ";
+                ExpressionAttributeValues += '":m' + i + '": "' + mType[i] + '", ';
+            }else{
+                filterExpression += "#vchTrainingType = :m" + i;
+                ExpressionAttributeValues += '":m' + i + '": "' + mType[i] + '"';
+            }
+        }
+
+
+        ExpressionAttributeValues += ',":place": "' + place + '"' ;
+        ExpressionAttributeValues += "}";
+        filterExpression += ") AND (#vchTrainingPlace = :place)";
+        var AttributeValues = JSON.parse(ExpressionAttributeValues);
 
         var params = {
             TableName : constants.DYN_WARMUP_TABLE,
-            ProjectionExpression: ["iWarmupId","iDuration","imgGif","imgImage","vchCorporalZone","vchDescription","vchIntensity","vchName","vchTrainingPlace","vchTrainingType","iRepetition","vchTimeUnit","vchLevel"],
-            //FilterExpression: "#vchTrainingPlace = :place AND #vchTrainingType = :trainingtype AND #vchCorporalZone = :corporalZone",
-            FilterExpression: "#vchTrainingPlace = :place AND #vchTrainingType = :trainingtype AND #vchCorporalZone = :corporalZone",
+            FilterExpression: filterExpression,
+            ProjectionExpression: ["iWarmupId", "iDuration", "imgGif", "imgImage", "vchCorporalZone", "vchDescription", "vchIntensity", "vchName", "vchTrainingPlace", "vchTrainingType", "iRepetition", "vchTimeUnit", "vchLevel"],
             ExpressionAttributeNames:{
-                "#vchTrainingPlace": "vchTrainingPlace",
                 "#vchTrainingType": "vchTrainingType",
-                "#vchCorporalZone": "vchCorporalZone"
-
+                "#vchTrainingPlace": "vchTrainingPlace"
             },
-            ExpressionAttributeValues: {
-                ":place": place,
-                ":trainingtype": trainingtype,
-                ":corporalZone": corporalZone
-            }
+            ExpressionAttributeValues: AttributeValues
         };
 
         docClient.scan(params, function(err, data) {

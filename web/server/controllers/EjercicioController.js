@@ -47,8 +47,10 @@ exports.getStretchingByMuscle = function (req, res) {
 
 exports.getEjerciciobyId = function (req, res) {
     var id = req.query.id;
+    var place = req.query.place;
     console.log(id);
-    jQuery.when(aws.DynamoEjercicios.getEjerciciobyId(docClient, id)).done(function (resp) {
+    console.log(place);
+    jQuery.when(aws.DynamoEjercicios.getEjerciciobyId(docClient, id,place)).done(function (resp) {
         res.status(200);
         res.jsonp({"data": resp});
     }).fail(function () {

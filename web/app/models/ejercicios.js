@@ -331,8 +331,9 @@ Ejercicio = function (dynamodb) {
 
 
         ExpressionAttributeValues += ',":place": "' + place + '"' ;
+        ExpressionAttributeValues += ',":Zone": "' + corporalZone + '"' ;
         ExpressionAttributeValues += "}";
-        filterExpression += ") AND (#vchTrainingPlace = :place)";
+        filterExpression += ") AND (#vchTrainingPlace = :place) AND (#vchCorporalZone = :Zone)";
         var AttributeValues = JSON.parse(ExpressionAttributeValues);
 
         var params = {
@@ -341,7 +342,8 @@ Ejercicio = function (dynamodb) {
             ProjectionExpression: ["iWarmupId", "iDuration", "imgGif", "imgImage", "vchCorporalZone", "vchDescription", "vchIntensity", "vchName", "vchTrainingPlace", "vchTrainingType", "iRepetition", "vchTimeUnit", "vchLevel"],
             ExpressionAttributeNames:{
                 "#vchTrainingType": "vchTrainingType",
-                "#vchTrainingPlace": "vchTrainingPlace"
+                "#vchTrainingPlace": "vchTrainingPlace",
+                "#vchCorporalZone": "vchCorporalZone"
             },
             ExpressionAttributeValues: AttributeValues
         };

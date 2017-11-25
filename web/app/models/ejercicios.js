@@ -95,7 +95,7 @@ Ejercicio = function (dynamodb) {
         if(place=="1") {
             var params = {
                 TableName: constants.DYN_EJERCICIOS_TABLE,
-                ProjectionExpression: ["imagen", "nombre", "descripcion", "series", "repeticiones"],
+                ProjectionExpression: [ "nombre", "pasos", "descripcion", "imagen", "gif"],
                 FilterExpression: "#id = :id",
                 ExpressionAttributeNames: {
                     "#id": "id"
@@ -109,7 +109,7 @@ Ejercicio = function (dynamodb) {
         if(place=="0") {
             var params = {
                 TableName: constants.DYN_WARMUP_TABLE,
-                ProjectionExpression: ["iWarmupId","iDuration","imgGif","imgImage","vchCorporalZone","vchDescription","vchIntensity","vchName","vchTrainingPlace","vchTrainingType","iRepetition","vchTimeUnit","vchLevel"],
+                ProjectionExpression: ["imgGif","vchName","vchDescription","vchIntensity"],
                 FilterExpression: "#iWarmupId = :id",
                 ExpressionAttributeNames: {
                     "#iWarmupId": "iWarmupId"

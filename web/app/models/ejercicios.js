@@ -95,7 +95,7 @@ Ejercicio = function (dynamodb) {
         if(place=="1") {
             var params = {
                 TableName: constants.DYN_EJERCICIOS_TABLE,
-                ProjectionExpression: [ "nombre", "pasos", "descripcion", "imagen", "gif"],
+                ProjectionExpression: [ "nombre","musculo", "pasos", "descripcion","respiracion", "imagen", "gif","repeticiones","series"],
                 FilterExpression: "#id = :id",
                 ExpressionAttributeNames: {
                     "#id": "id"
